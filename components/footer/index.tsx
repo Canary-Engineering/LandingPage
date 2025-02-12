@@ -1,13 +1,13 @@
-import Link from "next/link"
-import { Flame, Instagram, Linkedin, Twitter, Sun, Globe } from "lucide-react"
-import { Discord, CanaryFull } from "@/components/ui/icons"
-import { Button } from "@/components/ui/button"
-import { ModeToggle, RadioToggle } from '@/components/dark-mode/toggle';
+import Link from "next/link";
+import { Flame, Instagram, Linkedin, Twitter, Sun, Globe } from "lucide-react";
+import { Discord, CanaryFull } from "@/components/ui/icons";
+import { Button } from "@/components/ui/button";
+import { ModeToggle, RadioToggle } from "@/components/dark-mode/toggle";
 
 export default function Footer() {
   return (
-    <footer className="w-full p-4 md:p-6 lg:p-8">
-      <div className="mx-auto w-full rounded-3xl bg-background  p-16">
+    <footer className="w-full">
+      <div className="mx-auto w-full rounded-t-3xl bg-background p-16">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[300px_1fr_auto]">
           {/* Logo Section */}
           <div className="space-y-4 justify-items-start">
@@ -21,34 +21,44 @@ export default function Footer() {
               <p>All rights reserved.</p>
             </div>
             <div className="flex ">
-                <RadioToggle />
+              <RadioToggle />
             </div>
-            
           </div>
-          
 
           {/* Navigation Links */}
           <div className="flex flex-wrap justify-between gap-8">
-            <div className="min-w-[150px]"> 
+            <div className="min-w-[150px]">
               <h3 className="font-bold text-[#FF0049] mb-4 text-lg">CANARY</h3>
               <ul className="space-y-2 text-sm space-y-4">
                 <li>
-                  <Link href="#" className="hover:text-[#FF0049] transition-colors">
+                  <Link
+                    href="/drivesense"
+                    className="hover:text-[#FF0049] transition-colors"
+                  >
                     DriveSense
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-[#FF0049] transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-[#FF0049] transition-colors"
+                  >
                     DriveSense Fleet
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-[#FF0049] transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-[#FF0049] transition-colors"
+                  >
                     Products
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-[#FF0049] transition-colors">
+                  <Link
+                    href="#"
+                    className="hover:text-[#FF0049] transition-colors"
+                  >
                     Pricing
                   </Link>
                 </li>
@@ -56,20 +66,31 @@ export default function Footer() {
             </div>
 
             <div className="min-w-[150px]">
-              <h3 className="font-bold text-[#FF0049] mb-4 text-lg">SERVICES</h3>
+              <h3 className="font-bold text-[#FF0049] mb-4 text-lg">
+                SERVICES
+              </h3>
               <ul className="space-y-2 text-sm space-y-4">
                 <li>
-                  <Link href="#" className="hover:text-[#FF0049] transition-colors">
+                  <Link
+                    href="/drivesense-teens"
+                    className="hover:text-[#FF0049] transition-colors"
+                  >
                     DriveSense for Teens
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-[#FF0049] transition-colors">
+                  <Link
+                    href="drivesense-business"
+                    className="hover:text-[#FF0049] transition-colors"
+                  >
                     DriveSense for Businesses
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-[#FF0049] transition-colors">
+                  <Link
+                    href="/drivesense-api"
+                    className="hover:text-[#FF0049] transition-colors"
+                  >
                     DriveSense API
                   </Link>
                 </li>
@@ -80,17 +101,34 @@ export default function Footer() {
               <h3 className="font-bold text-[#FF0049] mb-4 text-lg">COMPANY</h3>
               <ul className="space-y-2 text-sm space-y-4">
                 <li>
-                  <Link href="#" className="hover:text-[#FF0049] transition-colors">
+                  <Link
+                    href="/about"
+                    className="hover:text-[#FF0049] transition-colors"
+                  >
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-[#FF0049] transition-colors">
+                  <Link
+                    href="/team"
+                    className="hover:text-[#FF0049] transition-colors"
+                  >
                     Our Team
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-[#FF0049] transition-colors">
+                  <Link
+                    href="/roadmap"
+                    className="hover:text-[#FF0049] transition-colors"
+                  >
+                    Roadmap
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/branding"
+                    className="hover:text-[#FF0049] transition-colors"
+                  >
                     Branding
                   </Link>
                 </li>
@@ -101,20 +139,23 @@ export default function Footer() {
               <h3 className="font-bold text-[#FF0049] mb-4 text-lg">LEGAL</h3>
               <ul className="space-y-2 text-sm space-y-4">
                 <li>
-                  <Link href="#" className="hover:text-[#FF0049] transition-colors">
+                  <Link
+                    href="/terms"
+                    className="hover:text-[#FF0049] transition-colors"
+                  >
                     Terms of Service
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-[#FF0049] transition-colors">
+                  <Link
+                    href="/privacy"
+                    className="hover:text-[#FF0049] transition-colors"
+                  >
                     Privacy Policy
                   </Link>
                 </li>
               </ul>
             </div>
-
-        
-
           </div>
 
           {/* Right Section */}
@@ -149,6 +190,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
-
