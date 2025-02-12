@@ -4,10 +4,10 @@ import { GeistMono } from 'geist/font/mono';
 import React from 'react'; // Import React
 
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/theme-provider";
 
 import NavigationFrame from "@/components/navigation";
-import Footer from "@/components/footer"
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Canary Engineering - Integrated Automotive Solutions",
@@ -27,7 +27,7 @@ export default function RootLayout({
         enableSystem
         disableTransitionOnChange
       >
-        <body className="relative min-h-screen bg-backgroundpure">
+        <body className="relative min-h-screen bg-backgroundpure flex flex-col">
           {/* Grid Array SVG Background */}
           <div className="fixed inset-0 z-[-1]">
             <svg
@@ -65,7 +65,7 @@ export default function RootLayout({
           />
 
           <NavigationFrame />
-          <main>{children}</main>
+          <main className="flex-grow">{children}</main>
           <Footer />
         </body>
       </ThemeProvider>

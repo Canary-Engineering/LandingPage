@@ -97,8 +97,8 @@ const support: { title: string; href: string; description: string }[] = [
 
 function NavigationFrame() {
   return (
-    <div className="fixed w-full p-6">
-      <nav className="nav bg-background rounded-3xl">
+    <div className="fixed w-full p-6 z-50 ">
+      <nav className="nav bg-background/80 backdrop-blur-sm rounded-3xl">
         <div className="nav-section py-[1rem] md:px-0 lg:px-[1rem] px-3">
           <div className="grid grid-cols-2 gap-2 mx-4 md:mx-12 xl:mx-32 2xl:mx-60=">
             <div className="flex gap-x-4">
