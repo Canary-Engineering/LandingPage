@@ -17,8 +17,8 @@ export default function Footer() {
               </div>
             </Link>
             <div className="space-y-1 text-base font-bold">
-              <p>Copyright © 2025 Halvex Inc.</p>
-              <p>All rights reserved.</p>
+              <p>COPYRIGHT © 2025 HALVEX INC.</p>
+              <p>ALL RIGHTS RESERVED.</p>
             </div>
             <div className="flex ">
               <RadioToggle />

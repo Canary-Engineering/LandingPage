@@ -20,11 +20,14 @@ import {
   FontAwesomeIcon,
   FontAwesomeIconProps,
 } from "@fortawesome/react-fontawesome";
+
 import { faBars } from "@fortawesome/pro-regular-svg-icons";
 
 import { faCar } from "@fortawesome/pro-regular-svg-icons";
 
 import { Globe } from "@geist-ui/icons";
+
+import { WaitlistModalButton } from "../ui/waitlistmodal";
 
 import {
   NavigationMenu,
@@ -118,7 +121,10 @@ function NavigationFrame() {
                             <NavigationMenuLink asChild>
                               <Link href="/drivesense">
                                 <GlareCard className="flex select-none flex-col justify-end rounded-md p-6">
-                                  <FontAwesomeIcon icon={faCar} className="w-8 h-8 text-muted-foreground font-thin"/>
+                                  <FontAwesomeIcon
+                                    icon={faCar}
+                                    className="w-8 h-8 text-muted-foreground font-thin"
+                                  />
                                   <div className="mb-2 mt-4 text-lg font-medium text-white">
                                     DriveSense
                                   </div>
@@ -131,10 +137,7 @@ function NavigationFrame() {
                             </NavigationMenuLink>
                           </li>
                           <li className="col-span-2 row-span-1 inline-flex gap-x-1">
-                            <ListItem
-                              href="/fleet"
-                              title="DriveSense Fleet"
-                            >
+                            <ListItem href="/fleet" title="DriveSense Fleet">
                               Centralized Monitoring & Management for Multiple
                               Vehicles
                             </ListItem>
@@ -235,9 +238,7 @@ function NavigationFrame() {
                     </ul>
                   </div>
                   <div className="py-2">
-                    <h1 className="font-display font-bold text-xl">
-                      Company
-                    </h1>
+                    <h1 className="font-display font-bold text-xl">Company</h1>
                     <ul className="px-2 py-2">
                       {company.map((company) => (
                         <li key={company.title}>
@@ -251,9 +252,7 @@ function NavigationFrame() {
                     </ul>
                   </div>
                   <div className="py-2">
-                    <h1 className="font-display font-bold text-xl">
-                      Support
-                    </h1>
+                    <h1 className="font-display font-bold text-xl">Support</h1>
                     <ul className="px-2 py-2">
                       {support.map((companyItems) => (
                         <li key={companyItems.title}>
@@ -293,7 +292,7 @@ function NavigationFrame() {
                         </Link>
                         <Link href="#">
                           <DropdownMenuItem>
-                            <GamepadIcon className="mr-2 h-4 w-4 fill-primary"/>
+                            <GamepadIcon className="mr-2 h-4 w-4 fill-primary" />
                             <span>Game Dashboard</span>
                           </DropdownMenuItem>
                         </Link>
@@ -309,9 +308,7 @@ function NavigationFrame() {
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
-                    <Link href="/waitlist">
-                      <Button className="font-bold">JOIN THE WAITLIST</Button>
-                    </Link>
+                    <WaitlistModalButton/>
                   </div>
                 </SheetContent>
               </Sheet>
@@ -359,9 +356,7 @@ function NavigationFrame() {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Link href="/waitlist">
-                <Button className="font-bold">JOIN THE WAITLIST</Button>
-              </Link>
+              <WaitlistModalButton />
             </div>
           </div>
         </div>

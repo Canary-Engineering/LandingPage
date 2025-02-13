@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
-import React from 'react'; // Import React
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import React from "react"; // Import React
+import { ReactLenis, useLenis } from "lenis/react";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -20,55 +21,57 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <body className="relative min-h-screen bg-backgroundpure flex flex-col">
-          {/* Grid Array SVG Background */}
-          <div className="fixed inset-0 z-[-1]">
-            <svg
-              className="absolute inset-0 w-full h-full"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <pattern
-                  id="grid-pattern"
-                  width="40"
-                  height="40"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <path
-                    d="M 40 0 L 0 0 0 40"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="0.5"
-                    strokeOpacity="0.1"
-                  />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid-pattern)" />
-            </svg>
-          </div>
+    <ReactLenis root>
+      <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <body className="relative min-h-screen bg-backgroundpure flex flex-col">
+            {/* Grid Array SVG Background */}
+            <div className="fixed inset-0 z-[-1]">
+              <svg
+                className="absolute inset-0 w-full h-full"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <pattern
+                    id="grid-pattern"
+                    width="40"
+                    height="40"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <path
+                      d="M 40 0 L 0 0 0 40"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="0.5"
+                      strokeOpacity="0.1"
+                    />
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+              </svg>
+            </div>
 
-          {/* Noise Overlay */}
-          <div
-            className="fixed inset-0 z-[-1] opacity-[0.030]"
-            style={{
-              backgroundImage: "url('/noise.png')",
-              backgroundRepeat: "repeat",
-              backgroundSize: "auto",
-            }}
-          />
+            {/* Noise Overlay */}
+            <div
+              className="fixed inset-0 z-[-1] opacity-[0.030]"
+              style={{
+                backgroundImage: "url('/noise.png')",
+                backgroundRepeat: "repeat",
+                backgroundSize: "auto",
+              }}
+            />
 
-          <NavigationFrame />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-        </body>
-      </ThemeProvider>
-    </html>
+            <NavigationFrame />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </body>
+        </ThemeProvider>
+      </html>
+    </ReactLenis>
   );
 }
