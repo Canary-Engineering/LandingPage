@@ -74,11 +74,6 @@ const company: { title: string; href: string; description: string }[] = [
     description: "Learn about our story and our mission.",
   },
   {
-    title: "Our Team",
-    href: "/team",
-    description: "Meet the team behind Canary and learn more about us.",
-  },
-  {
     title: "Branding",
     href: "/branding",
     description: "View our branding guidelines.",
