@@ -1,8 +1,7 @@
+import { RadioToggle } from "@/components/dark-mode/toggle";
+import { CanaryFull } from "@/components/ui/icons";
+import { Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
-import { Flame, Instagram, Linkedin, Twitter, Sun, Globe } from "lucide-react";
-import { Discord, CanaryFull } from "@/components/ui/icons";
-import { Button } from "@/components/ui/button";
-import { ModeToggle, RadioToggle } from "@/components/dark-mode/toggle";
 
 export default function Footer() {
   return (
@@ -44,14 +43,6 @@ export default function Footer() {
                     className="hover:text-[#FF0049] transition-colors"
                   >
                     DriveSense Fleet
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="hover:text-[#FF0049] transition-colors"
-                  >
-                    Products
                   </Link>
                 </li>
                 <li>

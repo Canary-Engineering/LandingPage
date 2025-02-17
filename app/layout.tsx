@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import React from "react"; // Import React
-import { ReactLenis, useLenis } from "lenis/react";
+import React from "react";
+import { ReactLenis } from "lenis/react";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-
 import NavigationFrame from "@/components/navigation";
 import Footer from "@/components/footer";
 
@@ -17,19 +14,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: { children: React.ReactNode }) {
   return (
-    <ReactLenis root>
-      <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className="relative min-h-screen bg-backgroundpure flex flex-col">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <body className="relative min-h-screen bg-backgroundpure flex flex-col">
+          <ReactLenis root>
             {/* Grid Array SVG Background */}
             <div className="fixed inset-0 z-[-1]">
               <svg
@@ -69,9 +64,9 @@ export default function RootLayout({
             <NavigationFrame />
             <main className="flex-grow">{children}</main>
             <Footer />
-          </body>
+          </ReactLenis>
         </ThemeProvider>
-      </html>
-    </ReactLenis>
+      </body>
+    </html>
   );
 }

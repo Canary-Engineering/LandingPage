@@ -1,22 +1,25 @@
-import { faCar } from "@fortawesome/pro-regular-svg-icons"
-import { Button } from "@/components/ui/button"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCar } from "@fortawesome/pro-regular-svg-icons";
+import { Button } from "@/components/ui/button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export function Hero() {
   return (
     <div className="relative w-full flex items-center justify-center bg-black overflow-hidden min-h-screen">
-      {/* Background image */}
-      <div
-        className="absolute inset-0 opacity-30"
-        style={{
-          backgroundImage: `url('/civicandbmw_WATERMARK.png')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
+      {/* Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover opacity-30"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src="/hero.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
       {/* Grid overlay */}
-      <div
-        className="absolute inset-0 opacity-20 mix-blend-multiply"
+      {/* <div
+        className="absolute inset-0 opacity-20 mix-blend-multiply pointer-events-none"
         style={{
           backgroundImage: `
             linear-gradient(to right, #111 1px, transparent 1px),
@@ -24,14 +27,15 @@ export function Hero() {
           `,
           backgroundSize: "20px 20px",
         }}
-      />
+      /> */}
+
       {/* Content */}
       <div className="container px-4 py-32 text-center relative z-10">
         <h1 className="text-5xl md:text-7xl lg:text-8xl text-white mx-auto leading-tight">
           monitor your vehicle in real-time
         </h1>
         <p className="mt-6 text-lg text-white/80 max-w-2xl mx-auto">
-        DriveSense provides real-time monitoring of your vehicle, tracking key metrics like speed, location, engine performance, and driving behavior.
+          DriveSense provides real-time monitoring of your vehicle, tracking key metrics like speed, location, engine performance, and driving behavior.
         </p>
         <div className="mt-12 flex flex-col items-center gap-2">
           <Button className="bg-[#FF0049] hover:bg-[#FF0049] text-white px-8 py-6 text-lg">
@@ -42,6 +46,5 @@ export function Hero() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

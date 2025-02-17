@@ -1,6 +1,6 @@
-import { TermsContent } from "@/components/terms-content"
+import { TermsContent } from "@/components/legal/terms/terms-content"
 
-export default function BrandPage() {
+export default function Privacy() {
   return (
     <main className="">
       <TermsContent />

@@ -47,7 +47,7 @@ export function RadioToggle() {
   )
 }
 
-function MonitorIcon(props) {
+function MonitorIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -65,11 +65,10 @@ function MonitorIcon(props) {
       <line x1="8" x2="16" y1="21" y2="21" />
       <line x1="12" x2="12" y1="17" y2="21" />
     </svg>
-  )
+  );
 }
 
-
-function MoonIcon(props) {
+function MoonIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -85,11 +84,10 @@ function MoonIcon(props) {
     >
       <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
     </svg>
-  )
+  );
 }
 
-
-function SunIcon(props) {
+function SunIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -113,5 +111,5 @@ function SunIcon(props) {
       <path d="m6.34 17.66-1.41 1.41" />
       <path d="m19.07 4.93-1.41 1.41" />
     </svg>
-  )
+  );
 }

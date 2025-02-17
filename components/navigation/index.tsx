@@ -2,23 +2,18 @@
 import React from "react";
 
 import {
-  GamepadIcon,
-  HamburgerIcon,
-  CloudIcon,
-  HalvexLogoBWSmall,
-  HalvexLogoBW,
   ConvoyLogo,
-  ServerIcon,
+  GamepadIcon,
+  HalvexLogoBWSmall,
 } from "@/components/icons";
 import { Canary, CanaryFull } from "@/components/ui/icons";
 
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 import {
-  FontAwesomeIcon,
-  FontAwesomeIconProps,
+  FontAwesomeIcon
 } from "@fortawesome/react-fontawesome";
 
 import { faBars } from "@fortawesome/pro-regular-svg-icons";
@@ -36,8 +31,8 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 
 import {
   DropdownMenu,
@@ -45,24 +40,15 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { FontawesomeObject } from "@fortawesome/fontawesome-svg-core";
 
 import {
   Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
   SheetClose,
-  SheetTrigger,
+  SheetContent,
+  SheetTrigger
 } from "@/components/ui/sheet";
 
 import { GlareCard } from "@/components/ui/glare-card";
@@ -297,10 +283,6 @@ function NavigationFrame() {
                             <span>Web Dashboard</span>
                           </DropdownMenuItem>
                         </Link>
-                        <DropdownMenuItem disabled>
-                          <ServerIcon className="mr-2 h-4 w-4 fill-primary" />
-                          <span>Halvex Metal</span>
-                        </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                     <WaitlistModalButton/>
@@ -345,10 +327,6 @@ function NavigationFrame() {
                       <span>Web Dashboard</span>
                     </DropdownMenuItem>
                   </Link>
-                  <DropdownMenuItem disabled>
-                    <ServerIcon className="mr-2 h-4 w-4 fill-primary" />
-                    <span>Halvex Metal</span>
-                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
               <WaitlistModalButton />
@@ -362,8 +340,8 @@ function NavigationFrame() {
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<"a"> & { href: string; title: string }
+>(({ className, title, href, children, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
@@ -371,9 +349,10 @@ const ListItem = React.forwardRef<
           prefetch={true}
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground ",
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
           )}
+          href={href} // Ensure href is required
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>

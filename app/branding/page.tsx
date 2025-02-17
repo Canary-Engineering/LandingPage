@@ -1,5 +1,5 @@
-import { BrandHero } from "@/components/brand-hero"
-import { BrandGuidelines } from "@/components/brand-guidelines"
+import { BrandHero } from "@/components/branding/brand-hero"
+import { BrandGuidelines } from "@/components/branding/brand-guidelines"
 
 export default function BrandPage() {
   return (
