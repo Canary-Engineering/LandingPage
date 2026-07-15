@@ -49,7 +49,9 @@ export function WaitlistModalButton() {
   return (
     <Credenza>
       <CredenzaTrigger asChild>
-        <Button className="font-bold">JOIN THE WAITLIST</Button>
+        <Button className="h-[34px] rounded-full bg-primary px-4 text-xs font-medium uppercase tracking-[0.04em] text-primary-foreground hover:bg-primary/90">
+          Get early access
+        </Button>
       </CredenzaTrigger>
       <CredenzaContent>
         <CredenzaHeader>
@@ -86,8 +88,8 @@ export function WaitlistModalButton() {
                       <FormLabel>I AM A BUSINESS</FormLabel>
                       <CredenzaDescription>
                         We&apos;ll send you additional updates regarding {" "}
-                        <Link href="/fleet" className="text-blue-500">
-                          DriveSense Fleet
+                        <Link href="/fleet" className="text-primary">
+                          Canary Fleet
                         </Link>
                         .
                       </CredenzaDescription>

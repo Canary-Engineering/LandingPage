@@ -19,12 +19,12 @@ function ColorSwatch({ name, hex, rgb, className }: ColorSwatchProps) {
 
   return (
     <div
-      className={`aspect-square rounded-3xl p-8 flex flex-col justify-end cursor-pointer transition-transform hover:scale-95 ${className}`}
+      className={`aspect-square rounded-2xl p-8 flex flex-col justify-end cursor-pointer transition-transform hover:scale-95 ${className}`}
       onClick={copyToClipboard}
     >
       <h3 className="text-xl font-medium mb-2">{name}</h3>
-      <p className="text-sm opacity-80">RGB {rgb}</p>
-      <p className="text-sm opacity-80">{hex}</p>
+      <p className="text-sm opacity-80 font-mono">RGB {rgb}</p>
+      <p className="text-sm opacity-80 font-mono">{hex}</p>
     </div>
   )
 }
@@ -39,12 +39,12 @@ function DownloadCard() {
 
 
   return (
-    <div className="rounded-3xl bg-background/50 backdrop-blur-sm p-8 border border-cream/10 h-full flex flex-col">
-      <h2 className="text-cream text-2xl mb-4">download assets</h2>
-      <p className="text-cream/60 leading-relaxed mb-8 flex-grow">
+    <div className="rounded-3xl border border-foreground/8 bg-background p-8 shadow-[0_8px_24px_rgba(12,10,9,0.08)] h-full flex flex-col">
+      <h2 className="text-foreground text-2xl font-medium mb-4">download assets</h2>
+      <p className="text-foreground/61 leading-relaxed mb-8 flex-grow">
         Get all Canary brand assets, including logos, icons, and guidelines in a single ZIP file.
       </p>
-      <Button onClick={handleDownload} className="w-full bg-[#ff0049] hover:bg-[#ff0049]/90 text-white">
+      <Button onClick={handleDownload} className="w-full rounded-full bg-primary hover:bg-primary/90 text-primary-foreground">
         <Download className="w-4 h-4 mr-2" />
         Download ZIP
       </Button>
@@ -56,9 +56,9 @@ export function BrandColors() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
       <div className="md:col-span-2">
-    <section className="rounded-3xl bg-background/50 backdrop-blur-sm p-8 border border-cream/10">
-      <h2 className="text-cream text-4xl mb-4">brand colors</h2>
-      <p className="text-cream/60 leading-relaxed mb-8">
+    <section className="rounded-3xl border border-foreground/8 bg-background p-8 shadow-[0_8px_24px_rgba(12,10,9,0.08)]">
+      <h2 className="text-foreground text-4xl font-medium mb-4">brand colors</h2>
+      <p className="text-foreground/61 leading-relaxed mb-8">
         Our brand colors are Canary Pink, Stealth Grey, and Ghost Black.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">

@@ -76,11 +76,11 @@ export function TermsContent() {
       {/* Hero Section */}
       <div className="py-24">
         <div className="container px-4 mx-auto">
-          <Card className="rounded-3xl bg-background/50 backdrop-blur-sm p-8 border border-cream/10">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl text-cream max-w-4xl leading-tight">
+          <Card className="rounded-3xl bg-background p-8 border border-foreground/8 shadow-[0_8px_24px_rgba(12,10,9,0.08)]">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium text-foreground max-w-4xl leading-tight">
               Terms of Service
             </h1>
-            <p className="text-cream/60 mt-4">Last Updated: February 14, 2024</p>
+            <p className="text-foreground/61 mt-4">Last Updated: February 14, 2024</p>
           </Card>
         </div>
       </div>
@@ -91,15 +91,15 @@ export function TermsContent() {
           {/* Sidebar Navigation (Sticky) */}
           <div className="relative lg:w-64 shrink-0 order-first lg:order-last">
             <div className="pt-9 lg:sticky lg:top-24 space-y-1 max-h-[calc(100vh-6rem)] overflow-y-auto w-full">
-            <div className="lg:block border-l border-cream/10">
+            <div className="lg:block border-l border-foreground/8">
               {sections.map(section => (
                 <Button
                   key={section.id}
                   variant="ghost"
                   className={`w-full justify-start text-xs md:text-sm truncate ${
                     activeSection === section.id
-                      ? "text-cream bg-cream/10 font-semibold"
-                      : "text-cream/60 hover:text-cream hover:bg-cream/5"
+                      ? "text-foreground bg-foreground/8 font-semibold"
+                      : "text-foreground/45 hover:text-foreground hover:bg-foreground/5"
                   }`}
                   onClick={() => handleClick(section.id)}
                 >
@@ -115,8 +115,8 @@ export function TermsContent() {
             <div className="max-w-3xl mx-auto lg:mx-0">
               {sections.map(section => (
                 <section key={section.id} id={section.id} className="mb-12 scroll-mt-28">
-                  <h2 className="text-2xl text-cream mb-4">{section.title}</h2>
-                  <p className="text-cream/60 leading-relaxed">
+                  <h2 className="text-2xl font-medium text-foreground mb-4">{section.title}</h2>
+                  <p className="text-foreground/61 leading-relaxed">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vehicula
                     efficitur quam, sed venenatis felis viverra id. Suspendisse potenti.
                   </p>

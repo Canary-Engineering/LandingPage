@@ -14,9 +14,14 @@ export default {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			sans: ['"Neue Haas Grotesk Display"', 'Helvetica Neue', 'Arial', 'sans-serif'],
+  			mono: ['"IBM Plex Mono"', 'ui-monospace', 'SF Mono', 'Menlo', 'monospace'],
+  		},
   		colors: {
+  			canary: '#ff0049',
   			background: 'hsl(var(--background))',
-  			backgroundpure: 'hsl(var(--background-alt))',
+  			'background-alt': 'hsl(var(--background-alt))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',

@@ -1,176 +1,159 @@
 import { RadioToggle } from "@/components/dark-mode/toggle";
-import { CanaryFull } from "@/components/ui/icons";
+import { Canary } from "@/components/ui/icons";
 import { Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="w-full">
-      <div className="mx-auto w-full rounded-t-3xl bg-background p-16">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[300px_1fr_auto]">
+    <footer className="w-full border-t border-foreground/8 bg-background">
+      <div className="mx-auto w-full max-w-[1280px] px-6 pb-10 pt-16 md:px-9 lg:px-[72px]">
+        <div className="grid grid-cols-1 gap-12 pb-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
           {/* Logo Section */}
-          <div className="space-y-4 justify-items-start">
-            <Link href="/" className="inline-block">
-              <div className="flex items-center gap-2">
-                <CanaryFull className="h-12 w-auto" fill="#FF0049" />
-              </div>
+          <div className="space-y-4">
+            <Link href="/" className="inline-flex items-center gap-1.5">
+              <Canary className="h-6 w-auto fill-primary" />
+              <span
+                className="text-xl text-primary"
+                style={{ fontFamily: "var(--font-wordmark)", fontWeight: "var(--font-wordmark-weight)" }}
+              >
+                canary
+              </span>
             </Link>
-            <div className="space-y-1 text-base font-bold">
-              <p>COPYRIGHT © 2025 HALVEX INC.</p>
-              <p>ALL RIGHTS RESERVED.</p>
-            </div>
-            <div className="flex ">
+            <p className="max-w-[220px] text-sm leading-[1.8] text-foreground/64">
+              Vehicle telematics and abuse detection, engineered for fleets and
+              owners who need to know.
+            </p>
+            <div className="pt-2">
               <RadioToggle />
             </div>
           </div>
 
           {/* Navigation Links */}
-          <div className="flex flex-wrap justify-between gap-8">
-            <div className="min-w-[150px]">
-              <h3 className="font-bold text-[#FF0049] mb-4 text-lg">CANARY</h3>
-              <ul className="space-y-2 text-sm space-y-4">
-                <li>
-                  <Link
-                    href="/drivesense"
-                    className="hover:text-[#FF0049] transition-colors"
-                  >
-                    DriveSense
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="hover:text-[#FF0049] transition-colors"
-                  >
-                    DriveSense Fleet
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="hover:text-[#FF0049] transition-colors"
-                  >
-                    Pricing
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className="min-w-[150px]">
-              <h3 className="font-bold text-[#FF0049] mb-4 text-lg">
-                SERVICES
-              </h3>
-              <ul className="space-y-2 text-sm space-y-4">
-                <li>
-                  <Link
-                    href="/drivesense-teens"
-                    className="hover:text-[#FF0049] transition-colors"
-                  >
-                    DriveSense for Teens
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="drivesense-business"
-                    className="hover:text-[#FF0049] transition-colors"
-                  >
-                    DriveSense for Businesses
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/drivesense-api"
-                    className="hover:text-[#FF0049] transition-colors"
-                  >
-                    DriveSense API
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className="min-w-[150px]">
-              <h3 className="font-bold text-[#FF0049] mb-4 text-lg">COMPANY</h3>
-              <ul className="space-y-2 text-sm space-y-4">
-                <li>
-                  <Link
-                    href="/about"
-                    className="hover:text-[#FF0049] transition-colors"
-                  >
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/roadmap"
-                    className="hover:text-[#FF0049] transition-colors"
-                  >
-                    Roadmap
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/branding"
-                    className="hover:text-[#FF0049] transition-colors"
-                  >
-                    Branding
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className="min-w-[150px]">
-              <h3 className="font-bold text-[#FF0049] mb-4 text-lg">LEGAL</h3>
-              <ul className="space-y-2 text-sm space-y-4">
-                <li>
-                  <Link
-                    href="/terms"
-                    className="hover:text-[#FF0049] transition-colors"
-                  >
-                    Terms of Service
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/privacy"
-                    className="hover:text-[#FF0049] transition-colors"
-                  >
-                    Privacy Policy
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div>
+            <h3 className="mb-4 text-[13.2px] font-medium text-foreground">Canary</h3>
+            <ul className="flex flex-col gap-3 text-[13.2px] text-foreground/45">
+              <li>
+                <Link href="/drivesense" className="hover:text-primary transition-colors">
+                  Canary Core
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-primary transition-colors">
+                  Core &amp; Nodes
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-primary transition-colors">
+                  Pricing
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          {/* Right Section */}
-          <div className="space-y-4 text-right justify-items-end">
-            <div className="text-xl font-bold">
-              <p>ENGINEERED BY CANARY IN ASHBURN</p>
-              <p>EST. 2025</p>
+          <div>
+            <h3 className="mb-4 text-[13.2px] font-medium text-foreground">Services</h3>
+            <ul className="flex flex-col gap-3 text-[13.2px] text-foreground/45">
+              <li>
+                <Link href="#" className="hover:text-primary transition-colors">
+                  Fleets &amp; Rentals
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-primary transition-colors">
+                  Individual Owners
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:text-primary transition-colors">
+                  API &amp; Docs
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-[13.2px] font-medium text-foreground">Company</h3>
+            <ul className="flex flex-col gap-3 text-[13.2px] text-foreground/45">
+              <li>
+                <Link href="/about" className="hover:text-primary transition-colors">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="/roadmap" className="hover:text-primary transition-colors">
+                  Roadmap
+                </Link>
+              </li>
+              <li>
+                <Link href="/branding" className="hover:text-primary transition-colors">
+                  Branding
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-[13.2px] font-medium text-foreground">Legal</h3>
+            <ul className="flex flex-col gap-3 text-[13.2px] text-foreground/45">
+              <li>
+                <Link href="/terms" className="hover:text-primary transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="hover:text-primary transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+            </ul>
+            <div className="mt-6 flex gap-4 text-foreground/45">
+              <Link href="#" className="hover:text-primary transition-colors">
+                <Instagram className="h-4 w-4" />
+              </Link>
+              <Link href="#" className="hover:text-primary transition-colors">
+                <Linkedin className="h-4 w-4" />
+              </Link>
             </div>
-            <div className="flex justify-end gap-4">
-              <Link href="#" className="hover:text-[#FF0049] transition-colors">
-                <Instagram className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="hover:text-[#FF0049] transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </Link>
-              {/* <Link href="#" className="hover:text-white transition-colors">
-                <Twitter className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="hover:text-white transition-colors">
-                <Discord className="h-5 w-5" />
-              </Link> */}
-            </div>
-            {/* <div className="flex justify-end gap-2">
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                <Sun className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                <Globe className="h-4 w-4" />
-              </Button>
-            </div> */}
           </div>
         </div>
+
+        <div className="flex flex-col-reverse items-start justify-between gap-3 border-t border-foreground/8 pt-6 sm:flex-row sm:items-center">
+          <span className="font-mono text-xs text-foreground/40">
+            © 2025 HALVEX INC. ALL RIGHTS RESERVED.
+          </span>
+          <span className="text-xs text-foreground/40">
+            Engineered by Canary in Ashburn, est. 2025
+          </span>
+        </div>
+      </div>
+
+      {/* Huge wordmark, oversized so it overflows the viewport and cropped —
+          warp.co-style brand signature at the very bottom of the footer.
+          Filled with a horizontal line-hatch that fades out toward the base
+          of the letters instead of a solid color fill. */}
+      <div className="relative h-44 overflow-hidden sm:h-64 md:h-80 lg:h-[26rem]">
+        <Link
+          href="/"
+          aria-label="Canary"
+          tabIndex={-1}
+          className="absolute inset-x-0 top-0 block select-none whitespace-nowrap text-center leading-none transition-opacity hover:opacity-80"
+          style={{
+            fontFamily: "var(--font-wordmark)",
+            fontWeight: "var(--font-wordmark-weight)",
+            fontSize: "clamp(6rem, 30vw, 26rem)",
+            letterSpacing: "-0.02em",
+            backgroundImage:
+              "repeating-linear-gradient(to bottom, var(--canary-pink) 0px, var(--canary-pink) 2px, transparent 2px, transparent 6px)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            color: "transparent",
+            WebkitTextFillColor: "transparent",
+            WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 94%)",
+            maskImage: "linear-gradient(to bottom, black 0%, transparent 94%)",
+          }}
+        >
+          canary
+        </Link>
       </div>
     </footer>
   );

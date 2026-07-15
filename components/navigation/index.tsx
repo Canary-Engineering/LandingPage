@@ -6,7 +6,7 @@ import {
   GamepadIcon,
   HalvexLogoBWSmall,
 } from "@/components/icons";
-import { Canary, CanaryFull } from "@/components/ui/icons";
+import { Canary } from "@/components/ui/icons";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -31,7 +31,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
 import {
@@ -79,23 +78,28 @@ const support: { title: string; href: string; description: string }[] = [
   },
 ];
 
+const navTriggerClass =
+  "!h-auto !bg-transparent !px-0 text-xs font-semibold uppercase tracking-[0.04em] text-foreground/64 hover:!bg-transparent hover:text-primary data-[state=open]:!bg-transparent data-[state=open]:text-primary";
+
 function NavigationFrame() {
   return (
-    <div className="fixed w-full p-6 z-50 ">
-      <nav className="nav bg-background/80 backdrop-blur-sm rounded-3xl">
-        <div className="nav-section py-[1rem] md:px-0 lg:px-[1rem] px-3">
-          <div className="grid grid-cols-2 gap-2 mx-4 md:mx-12 xl:mx-32 2xl:mx-60=">
-            <div className="flex gap-x-4">
-              <div className="inline-block">
-                <Link href="/" className="inline-flex gap-2">
-                  <Canary className="w-32 h-10 px-1 pt-2 fill-primary" />
-                </Link>
-              </div>
-              <div className="hidden lg:grid lg:justify-items-start">
+    <div className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/88 backdrop-blur-sm">
+      <nav className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-3.5 md:px-9 lg:px-[72px]">
+        <div className="flex items-center gap-8">
+          <Link href="/" className="inline-flex items-center gap-1.5">
+            <Canary className="h-6 w-auto fill-primary" />
+            <span
+              className="text-xl text-primary"
+              style={{ fontFamily: "var(--font-wordmark)", fontWeight: "var(--font-wordmark-weight)" }}
+            >
+              canary
+            </span>
+          </Link>
+          <div className="hidden lg:grid lg:justify-items-start">
                 <NavigationMenu>
-                  <NavigationMenuList>
+                  <NavigationMenuList className="gap-7">
                     <NavigationMenuItem>
-                      <NavigationMenuTrigger>PRODUCTS</NavigationMenuTrigger>
+                      <NavigationMenuTrigger className={navTriggerClass}>PRODUCTS</NavigationMenuTrigger>
                       <NavigationMenuContent>
                         <ul className="grid grid-cols-4 gap-3 p-6 md:w-[900px] lg:w-[800px]">
                           <li className="col-span-2 row-span-3">
@@ -107,7 +111,7 @@ function NavigationFrame() {
                                     className="w-8 h-8 text-muted-foreground font-thin"
                                   />
                                   <div className="mb-2 mt-4 text-lg font-medium text-white">
-                                    DriveSense
+                                    Canary Core
                                   </div>
                                   <p className="text-sm leading-tight text-muted dark:text-muted-foreground">
                                     Plug-In Vehicle Telematics Monitoring &
@@ -118,7 +122,7 @@ function NavigationFrame() {
                             </NavigationMenuLink>
                           </li>
                           <li className="col-span-2 row-span-1 inline-flex gap-x-1">
-                            <ListItem href="/fleet" title="DriveSense Fleet">
+                            <ListItem href="/fleet" title="Canary Fleet">
                               Centralized Monitoring & Management for Multiple
                               Vehicles
                             </ListItem>
@@ -126,7 +130,7 @@ function NavigationFrame() {
                           <li className="col-span-2 row-span-1 inline-flex gap-x-1">
                             <ListItem
                               href="/teens"
-                              title="DriveSense for Teens"
+                              title="Canary for Teens"
                             >
                               Real-Time Driving Insights and Safety Monitoring
                               for Young Drivers
@@ -135,7 +139,7 @@ function NavigationFrame() {
                           <li className="col-span-2 row-span-1 inline-flex gap-x-1">
                             <ListItem
                               href="/businesses"
-                              title="DriveSense for Businesses"
+                              title="Canary for Businesses"
                             >
                               Advanced Vehicle Monitoring and Management for
                               Fleet Operations
@@ -145,7 +149,7 @@ function NavigationFrame() {
                       </NavigationMenuContent>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                      <NavigationMenuTrigger>COMPANY</NavigationMenuTrigger>
+                      <NavigationMenuTrigger className={navTriggerClass}>COMPANY</NavigationMenuTrigger>
                       <NavigationMenuContent>
                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                           {company.map((company) => (
@@ -163,7 +167,7 @@ function NavigationFrame() {
                     <NavigationMenuItem>
                       <Link href="/contact" legacyBehavior passHref>
                         <NavigationMenuLink
-                          className={navigationMenuTriggerStyle()}
+                          className={navTriggerClass}
                         >
                           CONTACT US
                         </NavigationMenuLink>
@@ -171,8 +175,8 @@ function NavigationFrame() {
                     </NavigationMenuItem>
                   </NavigationMenuList>
                 </NavigationMenu>
-              </div>
-            </div>
+          </div>
+        </div>
             <div className="lg:hidden flex justify-end space-x-2 pt-1">
               <Sheet>
                 <SheetTrigger
@@ -182,8 +186,14 @@ function NavigationFrame() {
                   <FontAwesomeIcon icon={faBars} className="py-3" />
                 </SheetTrigger>
                 <SheetContent>
-                  <Link href="/">
-                    <CanaryFull className="h-16 w-48 fill-primary" />
+                  <Link href="/" className="inline-flex items-center gap-2">
+                    <Canary className="h-7 w-auto fill-primary" />
+                    <span
+                      className="text-3xl text-primary"
+                      style={{ fontFamily: "var(--font-wordmark)", fontWeight: "var(--font-wordmark-weight)" }}
+                    >
+                      canary
+                    </span>
                   </Link>
                   <div className="py-2">
                     <h1 className="font-display font-bold text-xl">Products</h1>
@@ -191,28 +201,28 @@ function NavigationFrame() {
                       <li>
                         <SheetClose asChild>
                           <Link prefetch href="drivesense">
-                            DriveSense
+                            Canary Core
                           </Link>
                         </SheetClose>
                       </li>
                       <li>
                         <SheetClose asChild>
                           <Link prefetch href="#e">
-                            DriveSense Fleet
+                            Canary Fleet
                           </Link>
                         </SheetClose>
                       </li>
                       <li>
                         <SheetClose asChild>
                           <Link prefetch href="#">
-                            DriveSense for Teens
+                            Canary for Teens
                           </Link>
                         </SheetClose>
                       </li>
                       <li>
                         <SheetClose asChild>
                           <Link prefetch href="#">
-                            DriveSense for Businesses
+                            Canary for Businesses
                           </Link>
                         </SheetClose>
                       </li>
@@ -331,8 +341,6 @@ function NavigationFrame() {
               </DropdownMenu>
               <WaitlistModalButton />
             </div>
-          </div>
-        </div>
       </nav>
     </div>
   );

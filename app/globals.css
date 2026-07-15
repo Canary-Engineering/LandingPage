@@ -4,64 +4,109 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Neue Haas Grotesk Display — self-hosted, carries wordmark/display/UI/body.
+   Full weight set; "65 Medium" (weight 500) is the wordmark cut. */
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayXXThin.ttf') format('truetype');font-weight:100;font-style:normal;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayXXThinItalic.ttf') format('truetype');font-weight:100;font-style:italic;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayXThin.ttf') format('truetype');font-weight:150;font-style:normal;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayXThinItalic.ttf') format('truetype');font-weight:150;font-style:italic;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayThin.ttf') format('truetype');font-weight:200;font-style:normal;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayThinItalic.ttf') format('truetype');font-weight:200;font-style:italic;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayLight.ttf') format('truetype');font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayLightItalic.ttf') format('truetype');font-weight:300;font-style:italic;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayRoman.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayRomanItalic.ttf') format('truetype');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayMedium.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayMediumItalic.ttf') format('truetype');font-weight:500;font-style:italic;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayBold.ttf') format('truetype');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayBoldItalic.ttf') format('truetype');font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayBlack.ttf') format('truetype');font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:'Neue Haas Grotesk Display';src:url('/fonts/NeueHaasDisplayBlackItalic.ttf') format('truetype');font-weight:900;font-style:italic;font-display:swap}
 
-body {
-  /* font-family: Arial, Helvetica, sans-serif;
-  font-family: 'IBM Plex Mono', monospace; */
-  font-family: "IBM Plex Mono", monospace;
+:root {
+  --font-wordmark: 'Neue Haas Grotesk Display', 'Helvetica Neue', Arial, sans-serif;
+  --font-wordmark-weight: 500;
+  --font-sans: 'Neue Haas Grotesk Display', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --canary-pink: #ff0049;
+  --stealth-grey: #cdcbcb;
+  --ghost-black: #0c0a09;
 }
 
+body {
+  font-family: var(--font-sans);
+}
 
 @layer base {
   :root {
-    --background: 0 1% 80%;
-    --background-alt: 0 1% 50%;
-    --foreground: 0 0% 3.9%;
+    /* Light-first, warp.co-style: white canvas, ghost-black text, Canary Pink accent. */
+    --background: 0 0% 100%;
+    --background-alt: 60 8% 97.5%;
+    --foreground: 20 14.3% 4.1%;
+
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 20 14.3% 4.1%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --popover-foreground: 20 14.3% 4.1%;
+
+    --primary: 342.8 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 6.7% 94.1%;
+    --secondary-foreground: 20 14.3% 4.1%;
+
+    --muted: 60 7.7% 97.5%;
+    --muted-foreground: 60 3% 53.9%;
+
+    --accent: 30 6.7% 94.1%;
+    --accent-foreground: 20 14.3% 4.1%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+
+    --border: 30 6.7% 94.1%;
+    --input: 48 5% 80.2%;
+    --ring: 342.8 100% 50%;
+
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --radius: 0.625rem;
   }
   .dark {
-    --background: 20 14% 4%;
-    --background-alt: 30 13% 6%;
+    /* Dark surfaces kept for the rare dark section (security band, CTA card,
+       footer accent) — same shape language, inverted palette. */
+    --background: 20 14.3% 4.1%;
+    --background-alt: 20 8.6% 6.9%;
     --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
+
+    --card: 20 8.6% 6.9%;
     --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
+    --popover: 20 8.6% 6.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
+
+    --primary: 342.8 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 48 8.2% 12%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
+
+    --muted: 48 8.2% 12%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 48 8.2% 12%;
     --accent-foreground: 0 0% 98%;
+
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+
+    --border: 0 0% 100% / 0.12;
+    --input: 0 0% 100% / 0.16;
+    --ring: 342.8 100% 50%;
+
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -75,6 +120,27 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background-alt text-foreground;
   }
+}
+
+/* Faint grid-line texture, reserved for the rare dark sections (per brand
+   direction: full-bleed grid/noise is not a whole-site treatment anymore). */
+.canary-grid-bg-dark {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.08) 0.5px, transparent 0.5px),
+    linear-gradient(to bottom, rgba(255,255,255,0.08) 0.5px, transparent 0.5px);
+  background-size: 40px 40px;
+}
+.canary-noise {
+  position: relative;
+}
+.canary-noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('/noise.png');
+  background-repeat: repeat;
+  opacity: 0.04;
 }

@@ -8,75 +8,64 @@ import Image from "next/image";
 
 export function AboutContent() {
   return (
-    <div className=" py-16">
-      <div className="container px-4 max-w-7xl mx-auto space-y-12">
+    <div className="py-16">
+      <div className="container mx-auto max-w-7xl space-y-12 px-4">
         {/* Naming Section */}
-        <section className="rounded-3xl bg-background/50 backdrop-blur-sm p-8 border border-cream/10">
-          <h2 className="text-cream text-4xl mb-4">
+        <section className="rounded-3xl border border-foreground/8 bg-background p-8 shadow-[0_8px_24px_rgba(12,10,9,0.08)]">
+          <h2 className="mb-4 text-4xl font-medium text-foreground">
             everything started with an idea...
           </h2>
-          <p className="text-cream/60 leading-relaxed mb-8">
+          <p className="mb-8 leading-relaxed text-foreground/61">
             It wasn&apos;t just to promote a safe driving environment.
           </p>
           <Image
             src="/civicandbmw_WATERMARK.png"
-            alt="Description"
-            width={800} // Adjust based on actual image size
-            height={600} // Adjust based on actual image size
-            className="w-full rounded-3xl mb-4"
+            alt="Canary origin"
+            width={800}
+            height={600}
+            className="mb-4 w-full rounded-3xl"
           />
-          <p className="text-cream/60 leading-relaxed mt-8">
-            LOREM IPSUM LOREM IPSUM
-          </p>
         </section>
 
-        {/* Usage Section */}
-        <section className="rounded-3xl bg-background/50 backdrop-blur-sm p-8 border border-cream/10">
-          <h2 className="text-cream text-4xl mb-4 text-leftr">our values</h2>
-          <p className="text-cream/60 leading-relaxed mb-8">
+        {/* Values Section */}
+        <section className="rounded-3xl border border-foreground/8 bg-background p-8 shadow-[0_8px_24px_rgba(12,10,9,0.08)]">
+          <h2 className="mb-4 text-4xl font-medium text-foreground">our values</h2>
+          <p className="mb-8 leading-relaxed text-foreground/61">
             What we strive to be
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Left Div */}
-            <div className="rounded-3xl bg-cream/10 p-6 border border-cream/20">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="rounded-2xl border border-foreground/8 bg-background-alt p-6">
               <Accordion type="single" collapsible>
                 <AccordionItem value="item-1">
-                  <AccordionTrigger>Value 1</AccordionTrigger>
-                  <AccordionContent>Description for value 1.</AccordionContent>
+                  <AccordionTrigger>Transparency</AccordionTrigger>
+                  <AccordionContent>
+                    Vehicle owners deserve to know exactly what is happening
+                    with their car.
+                  </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
-                  <AccordionTrigger>Value 2</AccordionTrigger>
-                  <AccordionContent>Description for value 2.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-3">
-                  <AccordionTrigger>Value 3</AccordionTrigger>
-                  <AccordionContent>Description for value 3.</AccordionContent>
+                  <AccordionTrigger>Reliability</AccordionTrigger>
+                  <AccordionContent>
+                    Telematics only matter if the data is trustworthy, every
+                    time.
+                  </AccordionContent>
                 </AccordionItem>
               </Accordion>
             </div>
 
-            {/* Right Div */}
-            <div className="rounded-3xl bg-cream/10 p-6 border border-cream/20">
+            <div className="rounded-2xl border border-foreground/8 bg-background-alt p-6">
               <Accordion type="single" collapsible>
-                <AccordionItem value="item-4">
-                  <AccordionTrigger>Value 4</AccordionTrigger>
-                  <AccordionContent>Description for value 4.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-5">
-                  <AccordionTrigger>Value 5</AccordionTrigger>
-                  <AccordionContent>Description for value 5.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-6">
-                  <AccordionTrigger>Value 6</AccordionTrigger>
-                  <AccordionContent>Description for value 6.</AccordionContent>
+                <AccordionItem value="item-3">
+                  <AccordionTrigger>Simplicity</AccordionTrigger>
+                  <AccordionContent>
+                    Plug-in hardware, zero-config setup, no jargon.
+                  </AccordionContent>
                 </AccordionItem>
               </Accordion>
             </div>
           </div>
         </section>
-
-        {/* Wordmark Section */}
       </div>
     </div>
   );

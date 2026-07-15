@@ -8,9 +8,9 @@ export function BrandGuidelines() {
     <div className=" py-16">
       <div className="container px-4 max-w-7xl mx-auto space-y-12">
         {/* Naming Section */}
-        <section className="rounded-3xl bg-background/50 backdrop-blur-sm p-8 border border-cream/10">
-          <h2 className="text-cream text-4xl mb-4">naming</h2>
-          <p className="text-cream/60 leading-relaxed">
+        <section className="rounded-3xl border border-foreground/8 bg-background p-8 shadow-[0_8px_24px_rgba(12,10,9,0.08)]">
+          <h2 className="mb-4 text-4xl font-medium text-foreground">naming</h2>
+          <p className="leading-relaxed text-foreground/61">
             Our name is &quot;Canary Engineering&quot;, also referred to as &quot;Canary&quot;, or any other derivative. Such terms are not wholly accurate
             and will cause confusion among customers. Always capitalize the &quot;C&quot;. Canary is the name of our company and
             our platform.
@@ -18,9 +18,9 @@ export function BrandGuidelines() {
         </section>
 
         {/* Usage Section */}
-        <section className="rounded-3xl bg-background/50 backdrop-blur-sm p-8 border border-cream/10">
-          <h2 className="text-cream text-4xl mb-4">usage</h2>
-          <p className="text-cream/60 leading-relaxed">
+        <section className="rounded-3xl border border-foreground/8 bg-background p-8 shadow-[0_8px_24px_rgba(12,10,9,0.08)]">
+          <h2 className="mb-4 text-4xl font-medium text-foreground">usage</h2>
+          <p className="leading-relaxed text-foreground/61">
             Ensure that Canary assets always have enough space around them to maintain their integrity. Canary&apos;s
             branding assets are proprietary and protected by trademark and copyright laws. Do not alter Canary&apos;s
             branding assets in any way, or display them in a way that implies a relationship, affiliation, or
@@ -29,9 +29,9 @@ export function BrandGuidelines() {
         </section>
 
         {/* Wordmark Section */}
-        <section className="rounded-3xl bg-background/50 backdrop-blur-sm p-8 border border-cream/10">
-          <h2 className="text-cream text-4xl mb-4">wordmark</h2>
-          <p className="text-cream/60 leading-relaxed mb-8">
+        <section className="rounded-3xl border border-foreground/8 bg-background p-8 shadow-[0_8px_24px_rgba(12,10,9,0.08)]">
+          <h2 className="mb-4 text-4xl font-medium text-foreground">wordmark</h2>
+          <p className="mb-8 leading-relaxed text-foreground/61">
             The wordmark is the primary representation of the Canary brand and should be used whenever space allows.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -41,9 +41,9 @@ export function BrandGuidelines() {
           </div>
         </section>
 
-        <section className="rounded-3xl bg-background/50 backdrop-blur-sm p-8 border border-cream/10">
-          <h2 className="text-cream text-4xl mb-4">logomark</h2>
-          <p className="text-cream/60 leading-relaxed mb-8">
+        <section className="rounded-3xl border border-foreground/8 bg-background p-8 shadow-[0_8px_24px_rgba(12,10,9,0.08)]">
+          <h2 className="mb-4 text-4xl font-medium text-foreground">logomark</h2>
+          <p className="mb-8 leading-relaxed text-foreground/61">
           For tight spaces or when the Canary wordmark is too small to be legible, use the logomark.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
