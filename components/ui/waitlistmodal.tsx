@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -87,11 +86,8 @@ export function WaitlistModalButton() {
                     <div className="space-y-1 leading-none">
                       <FormLabel>I AM A BUSINESS</FormLabel>
                       <CredenzaDescription>
-                        We&apos;ll send you additional updates regarding {" "}
-                        <Link href="/fleet" className="text-primary">
-                          Canary Fleet
-                        </Link>
-                        .
+                        We&apos;ll send you additional updates about fleet and
+                        rental deployments.
                       </CredenzaDescription>
                     </div>
                   </FormItem>

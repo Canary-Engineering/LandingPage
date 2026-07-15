@@ -1,26 +1,11 @@
 "use client";
 import React from "react";
 
-import {
-  ConvoyLogo,
-  GamepadIcon,
-  HalvexLogoBWSmall,
-} from "@/components/icons";
 import { Canary } from "@/components/ui/icons";
 
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-
-import {
-  FontAwesomeIcon
-} from "@fortawesome/react-fontawesome";
-
-import { faBars } from "@fortawesome/pro-regular-svg-icons";
-
-import { faCar } from "@fortawesome/pro-regular-svg-icons";
-
-import { Globe } from "@geist-ui/icons";
+import { Car, Menu, ShieldCheck } from "lucide-react";
 
 import { WaitlistModalButton } from "../ui/waitlistmodal";
 
@@ -34,20 +19,10 @@ import {
 } from "@/components/ui/navigation-menu";
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
-
-import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetTrigger
+  SheetTrigger,
 } from "@/components/ui/sheet";
 
 import { GlareCard } from "@/components/ui/glare-card";
@@ -56,25 +31,17 @@ const company: { title: string; href: string; description: string }[] = [
   {
     title: "About",
     href: "/about",
-    description: "Learn about our story and our mission.",
+    description: "Why we're building Canary.",
+  },
+  {
+    title: "Security",
+    href: "/security",
+    description: "How Canary keeps every device and byte authenticated.",
   },
   {
     title: "Branding",
     href: "/branding",
-    description: "View our branding guidelines.",
-  },
-  {
-    title: "Roadmap",
-    href: "/roadmap",
-    description: "View our Roadmap",
-  },
-];
-const support: { title: string; href: string; description: string }[] = [
-  {
-    title: "Contact Us",
-    href: "/contact",
-    description:
-      "Have a question? Reach out to us and we'll get back to you as soon as possible.",
+    description: "Logo, wordmark and color guidelines.",
   },
 ];
 
@@ -99,50 +66,45 @@ function NavigationFrame() {
                 <NavigationMenu>
                   <NavigationMenuList className="gap-9">
                     <NavigationMenuItem>
-                      <NavigationMenuTrigger className={navTriggerClass}>Products</NavigationMenuTrigger>
+                      <NavigationMenuTrigger className={navTriggerClass}>Product</NavigationMenuTrigger>
                       <NavigationMenuContent>
                         <ul className="grid grid-cols-4 gap-3 p-6 md:w-[900px] lg:w-[800px]">
                           <li className="col-span-2 row-span-3">
                             <NavigationMenuLink asChild>
-                              <Link href="/drivesense">
+                              <Link href="/product">
                                 <GlareCard className="flex select-none flex-col justify-end rounded-md p-6">
-                                  <FontAwesomeIcon
-                                    icon={faCar}
-                                    className="w-8 h-8 text-muted-foreground font-thin"
+                                  <Car
+                                    className="h-8 w-8 text-muted-foreground"
+                                    strokeWidth={1.5}
                                   />
                                   <div className="mb-2 mt-4 text-lg font-medium text-white">
                                     Canary Core
                                   </div>
                                   <p className="text-sm leading-tight text-muted dark:text-muted-foreground">
-                                    Plug-In Vehicle Telematics Monitoring &
-                                    Abuse Detection System
+                                    Plug-in vehicle telematics &amp; abuse detection system
                                   </p>
                                 </GlareCard>
                               </Link>
                             </NavigationMenuLink>
                           </li>
                           <li className="col-span-2 row-span-1 inline-flex gap-x-1">
-                            <ListItem href="/fleet" title="Canary Fleet">
-                              Centralized Monitoring & Management for Multiple
-                              Vehicles
+                            <ListItem href="/product#fleets" title="For fleets &amp; rentals">
+                              Accountability with evidence, not opinion — every claim ships
+                              with the data behind it.
                             </ListItem>
                           </li>
                           <li className="col-span-2 row-span-1 inline-flex gap-x-1">
-                            <ListItem
-                              href="/teens"
-                              title="Canary for Teens"
-                            >
-                              Real-Time Driving Insights and Safety Monitoring
-                              for Young Drivers
+                            <ListItem href="/product#owners" title="For owners">
+                              Know the instant something happens to your vehicle, not after
+                              the fact.
                             </ListItem>
                           </li>
                           <li className="col-span-2 row-span-1 inline-flex gap-x-1">
-                            <ListItem
-                              href="/businesses"
-                              title="Canary for Businesses"
-                            >
-                              Advanced Vehicle Monitoring and Management for
-                              Fleet Operations
+                            <ListItem href="/security" title="Security">
+                              <span className="inline-flex items-center gap-1.5">
+                                <ShieldCheck className="h-3.5 w-3.5" />
+                                Hardware root of trust on every device
+                              </span>
                             </ListItem>
                           </li>
                         </ul>
@@ -182,7 +144,7 @@ function NavigationFrame() {
                   asChild
                   className="border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2"
                 >
-                  <FontAwesomeIcon icon={faBars} className="py-3" />
+                  <Menu className="h-4 w-4" />
                 </SheetTrigger>
                 <SheetContent>
                   <Link href="/" className="inline-flex items-center gap-2">
@@ -195,33 +157,19 @@ function NavigationFrame() {
                     </span>
                   </Link>
                   <div className="py-2">
-                    <h1 className="font-display font-bold text-xl">Products</h1>
+                    <h1 className="font-display font-bold text-xl">Product</h1>
                     <ul className="px-2 py-2">
                       <li>
                         <SheetClose asChild>
-                          <Link prefetch href="drivesense">
+                          <Link prefetch href="/product">
                             Canary Core
                           </Link>
                         </SheetClose>
                       </li>
                       <li>
                         <SheetClose asChild>
-                          <Link prefetch href="#e">
-                            Canary Fleet
-                          </Link>
-                        </SheetClose>
-                      </li>
-                      <li>
-                        <SheetClose asChild>
-                          <Link prefetch href="#">
-                            Canary for Teens
-                          </Link>
-                        </SheetClose>
-                      </li>
-                      <li>
-                        <SheetClose asChild>
-                          <Link prefetch href="#">
-                            Canary for Businesses
+                          <Link prefetch href="/security">
+                            Security
                           </Link>
                         </SheetClose>
                       </li>
@@ -239,105 +187,22 @@ function NavigationFrame() {
                           </SheetClose>
                         </li>
                       ))}
-                    </ul>
-                  </div>
-                  <div className="py-2">
-                    <h1 className="font-display font-bold text-xl">Support</h1>
-                    <ul className="px-2 py-2">
-                      {support.map((companyItems) => (
-                        <li key={companyItems.title}>
-                          <SheetClose asChild>
-                            <Link prefetch href={companyItems.href}>
-                              {companyItems.title}
-                            </Link>
-                          </SheetClose>
-                        </li>
-                      ))}
+                      <li>
+                        <SheetClose asChild>
+                          <Link prefetch href="/contact">
+                            Contact us
+                          </Link>
+                        </SheetClose>
+                      </li>
                     </ul>
                   </div>
                   <div className="flex space-x-2 pt-1">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="font-bold hidden">
-                          Sign In
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent className="w-56">
-                        <DropdownMenuLabel>Sign In</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuGroup>
-                          <Link href="#">
-                            <DropdownMenuItem>
-                              <HalvexLogoBWSmall className="mr-2 h-4 w-4 fill-primary" />
-                              <span>Halvex Dashboard</span>
-                            </DropdownMenuItem>
-                          </Link>
-                        </DropdownMenuGroup>
-                        <DropdownMenuSeparator />
-                        <Link href="#">
-                          <DropdownMenuItem>
-                            <ConvoyLogo className="mr-2 h-4 w-4 fill-primary" />
-                            <span>Halvex Console</span>
-                          </DropdownMenuItem>
-                        </Link>
-                        <Link href="#">
-                          <DropdownMenuItem>
-                            <GamepadIcon className="mr-2 h-4 w-4 fill-primary" />
-                            <span>Game Dashboard</span>
-                          </DropdownMenuItem>
-                        </Link>
-                        <Link href="#">
-                          <DropdownMenuItem>
-                            <Globe className="mr-2 h-4 w-4" />
-                            <span>Web Dashboard</span>
-                          </DropdownMenuItem>
-                        </Link>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                    <WaitlistModalButton/>
+                    <WaitlistModalButton />
                   </div>
                 </SheetContent>
               </Sheet>
             </div>
             <div className="hidden lg:flex justify-end items-center gap-6">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="text-[15px] font-medium text-foreground/70 hover:text-primary transition-colors">
-                    Log in
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
-                  <DropdownMenuLabel>Sign In</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuGroup>
-                    <Link href="https://billing.halvex.net/">
-                      <DropdownMenuItem>
-                        <HalvexLogoBWSmall className="mr-2 h-4 w-4 fill-primary" />
-                        <span>Halvex Dashboard</span>
-                      </DropdownMenuItem>
-                    </Link>
-                  </DropdownMenuGroup>
-                  <DropdownMenuSeparator />
-                  <Link href="https://console.halvex.net/">
-                    <DropdownMenuItem>
-                      <ConvoyLogo className="mr-2 h-4 w-4 fill-primary" />
-                      <span>Halvex Console</span>
-                    </DropdownMenuItem>
-                  </Link>
-                  <Link href="https://panel.halvex.net/">
-                    <DropdownMenuItem>
-                      <GamepadIcon className="mr-2 h-4 w-4 fill-primary" />
-                      <span>Game Dashboard</span>
-                    </DropdownMenuItem>
-                  </Link>
-                  <Link href="https://cpanel.halvex.net/">
-                    <DropdownMenuItem>
-                      <Globe className="mr-2 h-4 w-4" />
-                      <span>Web Dashboard</span>
-                    </DropdownMenuItem>
-                  </Link>
-                </DropdownMenuContent>
-              </DropdownMenu>
               <WaitlistModalButton />
             </div>
       </nav>

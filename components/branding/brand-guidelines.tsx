@@ -11,9 +11,9 @@ export function BrandGuidelines() {
         <section className="rounded-3xl border border-foreground/8 bg-background p-8 shadow-[0_8px_24px_rgba(12,10,9,0.08)]">
           <h2 className="mb-4 text-4xl font-medium text-foreground">naming</h2>
           <p className="leading-relaxed text-foreground/61">
-            Our name is &quot;Canary Engineering&quot;, also referred to as &quot;Canary&quot;, or any other derivative. Such terms are not wholly accurate
-            and will cause confusion among customers. Always capitalize the &quot;C&quot;. Canary is the name of our company and
-            our platform.
+            Our full name is &quot;Canary Engineering&quot;; in most contexts we go by
+            &quot;Canary&quot;. Always capitalize the &quot;C&quot;. Canary is the name of
+            both our company and our platform.
           </p>
         </section>
 
@@ -35,9 +35,9 @@ export function BrandGuidelines() {
             The wordmark is the primary representation of the Canary brand and should be used whenever space allows.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <WordmarkCard href="/brand/pink" bgColor="bg-[#ff0049]" fillColor="#000000" />
-            <WordmarkCard href="/brand/gray" bgColor="bg-[#cdcbcb]" fillColor="#ff0049" />
-            <WordmarkCard href="/brand/dark" bgColor="bg-[#0c0a09]" fillColor="#ff0049" />
+            <WordmarkCard bgColor="bg-[#ff0049]" fillColor="#000000" />
+            <WordmarkCard bgColor="bg-[#cdcbcb]" fillColor="#ff0049" />
+            <WordmarkCard bgColor="bg-[#0c0a09]" fillColor="#ff0049" />
           </div>
         </section>
 
@@ -47,9 +47,9 @@ export function BrandGuidelines() {
           For tight spaces or when the Canary wordmark is too small to be legible, use the logomark.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <LogomarkCard href="/brand/pink" bgColor="bg-[#ff0049]" fillColor="#000000" />
-            <LogomarkCard href="/brand/gray" bgColor="bg-[#cdcbcb]" fillColor="#ff0049" />
-            <LogomarkCard href="/brand/dark" bgColor="bg-[#0c0a09]" fillColor="#ff0049" />
+            <LogomarkCard bgColor="bg-[#ff0049]" fillColor="#000000" />
+            <LogomarkCard bgColor="bg-[#cdcbcb]" fillColor="#ff0049" />
+            <LogomarkCard bgColor="bg-[#0c0a09]" fillColor="#ff0049" />
           </div>
         </section>
 

@@ -4,27 +4,26 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import Image from "next/image";
 
 export function AboutContent() {
   return (
     <div className="py-16">
       <div className="container mx-auto max-w-7xl space-y-12 px-4">
-        {/* Naming Section */}
+        {/* Origin Section */}
         <section className="rounded-3xl border border-foreground/8 bg-background p-8 shadow-[0_8px_24px_rgba(12,10,9,0.08)]">
-          <h2 className="mb-4 text-4xl font-medium text-foreground">
-            everything started with an idea...
-          </h2>
-          <p className="mb-8 leading-relaxed text-foreground/61">
-            It wasn&apos;t just to promote a safe driving environment.
+          <h2 className="mb-4 text-4xl font-medium text-foreground">why canary</h2>
+          <p className="leading-relaxed text-foreground/61">
+            Vehicles get driven hard, rented out, handed to a new driver, or
+            parked across a fleet of a few hundred — and the person
+            responsible for them is usually the last to know what actually
+            happened. A dealer visit doesn&apos;t tell you. Footage that was
+            never recorded doesn&apos;t tell you. What helps is a plug-in
+            device that watches the vehicle&apos;s own systems and reports the
+            truth immediately, in a form you can trust and verify.
           </p>
-          <Image
-            src="/civicandbmw_WATERMARK.png"
-            alt="Canary origin"
-            width={800}
-            height={600}
-            className="mb-4 w-full rounded-3xl"
-          />
+          <p className="mt-4 leading-relaxed text-foreground/61">
+            That&apos;s what Canary is for.
+          </p>
         </section>
 
         {/* Values Section */}
@@ -60,6 +59,13 @@ export function AboutContent() {
                   <AccordionTrigger>Simplicity</AccordionTrigger>
                   <AccordionContent>
                     Plug-in hardware, zero-config setup, no jargon.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-4">
+                  <AccordionTrigger>Security by design</AccordionTrigger>
+                  <AccordionContent>
+                    Every device authenticates before it&apos;s trusted, and
+                    every update is signed before it&apos;s installed.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>

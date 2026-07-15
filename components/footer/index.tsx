@@ -1,13 +1,12 @@
 import { RadioToggle } from "@/components/dark-mode/toggle";
 import { Canary } from "@/components/ui/icons";
-import { Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
   return (
     <footer className="w-full border-t border-foreground/8 bg-background">
       <div className="mx-auto w-full max-w-[1280px] px-6 pb-10 pt-16 md:px-9 lg:px-[72px]">
-        <div className="grid grid-cols-1 gap-12 pb-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
+        <div className="grid grid-cols-1 gap-12 pb-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           {/* Logo Section */}
           <div className="space-y-4">
             <Link href="/" className="inline-flex items-center gap-1.5">
@@ -30,42 +29,26 @@ export default function Footer() {
 
           {/* Navigation Links */}
           <div>
-            <h3 className="mb-4 text-[13.2px] font-medium text-foreground">Canary</h3>
+            <h3 className="mb-4 text-[13.2px] font-medium text-foreground">Product</h3>
             <ul className="flex flex-col gap-3 text-[13.2px] text-foreground/45">
               <li>
-                <Link href="/drivesense" className="hover:text-primary transition-colors">
+                <Link href="/product" className="hover:text-primary transition-colors">
                   Canary Core
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  Core &amp; Nodes
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  Pricing
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-[13.2px] font-medium text-foreground">Services</h3>
-            <ul className="flex flex-col gap-3 text-[13.2px] text-foreground/45">
-              <li>
-                <Link href="#" className="hover:text-primary transition-colors">
+                <Link href="/product#fleets" className="hover:text-primary transition-colors">
                   Fleets &amp; Rentals
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary transition-colors">
+                <Link href="/product#owners" className="hover:text-primary transition-colors">
                   Individual Owners
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  API &amp; Docs
+                <Link href="/security" className="hover:text-primary transition-colors">
+                  Security
                 </Link>
               </li>
             </ul>
@@ -80,13 +63,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/roadmap" className="hover:text-primary transition-colors">
-                  Roadmap
+                <Link href="/branding" className="hover:text-primary transition-colors">
+                  Branding
                 </Link>
               </li>
               <li>
-                <Link href="/branding" className="hover:text-primary transition-colors">
-                  Branding
+                <Link href="/contact" className="hover:text-primary transition-colors">
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -106,20 +89,12 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-            <div className="mt-6 flex gap-4 text-foreground/45">
-              <Link href="#" className="hover:text-primary transition-colors">
-                <Instagram className="h-4 w-4" />
-              </Link>
-              <Link href="#" className="hover:text-primary transition-colors">
-                <Linkedin className="h-4 w-4" />
-              </Link>
-            </div>
           </div>
         </div>
 
         <div className="flex flex-col-reverse items-start justify-between gap-3 border-t border-foreground/8 pt-6 sm:flex-row sm:items-center">
           <span className="font-mono text-xs text-foreground/40">
-            © 2025 HALVEX INC. ALL RIGHTS RESERVED.
+            © 2026 Canary Engineering. All rights reserved.
           </span>
           <span className="text-xs text-foreground/40">
             Engineered by Canary in Ashburn, est. 2025

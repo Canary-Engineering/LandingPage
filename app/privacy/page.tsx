@@ -1,6 +1,6 @@
 import { PrivacyContent } from "@/components/legal/privacy/privacy-content"
 
-export default function Terms() {
+export default function Privacy() {
   return (
     <main className="">
       <PrivacyContent />

@@ -6,7 +6,7 @@ export function AboutHero() {
           about canary
         </h1>
         <p className="mx-auto max-w-2xl text-lg text-foreground/61">
-          we are canary.
+          We build the hardware that tells the truth about a vehicle.
         </p>
       </div>
     </div>

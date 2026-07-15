@@ -1,25 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { WaitlistModalButton } from "@/components/ui/waitlistmodal";
-
-function useCountUp(target: number, durationMs = 1600) {
-  const [value, setValue] = useState(0);
-  useEffect(() => {
-    let raf = 0;
-    let start = 0;
-    function tick(ts: number) {
-      if (!start) start = ts;
-      const progress = Math.min((ts - start) / durationMs, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setValue(Math.floor(eased * target));
-      if (progress < 1) raf = requestAnimationFrame(tick);
-    }
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [target, durationMs]);
-  return value;
-}
 
 function LivePulse({ className = "" }: { className?: string }) {
   return (
@@ -138,9 +121,8 @@ function DashboardMock() {
           fleet.canary.engineering/dashboard
         </span>
         <span className="ml-auto flex items-center gap-1.5">
-          <LivePulse />
-          <span className="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-emerald-600">
-            Live
+          <span className="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-foreground/40">
+            Product preview
           </span>
         </span>
       </div>
@@ -187,11 +169,11 @@ function DashboardMock() {
           </div>
           <div className="rounded-2xl border border-foreground/8 bg-background p-4">
             <div className="text-[10.5px] font-semibold uppercase tracking-[0.04em] text-foreground/45">
-              Active Vehicles
+              Nodes Paired
             </div>
             <div className="mt-1 flex items-baseline gap-2">
-              <span className="font-mono text-[22px] text-foreground">1,204</span>
-              <span className="text-[11px] font-medium text-emerald-600">↑ 3.1%</span>
+              <span className="font-mono text-[22px] text-foreground">Core + 2</span>
+              <span className="text-[11px] font-medium text-foreground/40">Harness · Immobilizer</span>
             </div>
           </div>
           <div className="rounded-2xl border border-foreground/8 bg-background p-4">
@@ -255,7 +237,6 @@ const standards = [
 ];
 
 export function Hero() {
-  const miles = useCountUp(4182660);
   return (
     <div className="bg-background">
       {/* ── Hero ── */}
@@ -276,10 +257,7 @@ export function Hero() {
           >
             <LivePulse />
             <span className="text-[12.5px] font-medium text-foreground/55">
-              Vehicle-miles monitored by Canary:
-            </span>
-            <span className="font-mono text-[13px] text-foreground">
-              {miles.toLocaleString()}
+              Now in development — join the waitlist for early access
             </span>
           </div>
           <h1
@@ -308,14 +286,17 @@ export function Hero() {
               />
               <WaitlistModalButton />
             </div>
-            <button className="group flex h-9 items-center gap-2.5 rounded-full border-none bg-transparent py-1 pl-1 pr-3.5">
+            <Link
+              href="/product"
+              className="group flex h-9 items-center gap-2.5 rounded-full border-none bg-transparent py-1 pl-1 pr-3.5"
+            >
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-foreground/6 text-[10px] text-foreground transition-transform group-hover:scale-110">
-                ▶
+                →
               </span>
               <span className="text-[13.5px] font-medium text-foreground/55 group-hover:text-foreground/80">
-                Watch the 2-min tour
+                See how it works
               </span>
-            </button>
+            </Link>
           </div>
 
           {/* Dashboard mock */}
@@ -329,13 +310,13 @@ export function Hero() {
           {/* Readout strip */}
           <div className="flex flex-wrap gap-12 border-b border-foreground/8 py-7">
             <span className="font-mono text-[13px] text-foreground/64">
-              CAN FRAMES / DAY · 86,400,000
+              CAN 2.0 + CAN-FD · UP TO 8 MBPS
             </span>
             <span className="font-mono text-[13px] text-foreground/64">
-              ABUSE EVENTS DETECTED · 12,408
+              ABUSE DETECTION · EDGE-COMPUTED ON CORE
             </span>
             <span className="font-mono text-[13px] text-foreground/64">
-              MEDIAN ALERT LATENCY · 1.4s
+              SECURE ELEMENT · ON EVERY DEVICE
             </span>
           </div>
         </div>
@@ -352,9 +333,10 @@ export function Hero() {
         </h2>
         <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f) => (
-            <div
+            <Link
               key={f.t}
-              className="flex flex-col gap-3 rounded-2xl border border-foreground/8 bg-background p-5"
+              href="/product"
+              className="flex flex-col gap-3 rounded-2xl border border-foreground/8 bg-background p-5 transition-colors hover:border-foreground/16"
             >
               <div className="flex items-center justify-center rounded-[10px] border border-foreground/6 bg-background-alt px-3.5 py-4.5">
                 <span className="font-mono text-[11px] tracking-[0.02em] text-foreground/64">
@@ -363,10 +345,10 @@ export function Hero() {
               </div>
               <div className="text-[15.1px] font-medium text-foreground">{f.t}</div>
               <p className="m-0 text-[13.2px] leading-5 text-foreground/45">{f.d}</p>
-              <span className="cursor-pointer text-xs font-semibold tracking-[0.04em] text-primary">
+              <span className="text-xs font-semibold tracking-[0.04em] text-primary">
                 EXPLORE →
               </span>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -405,9 +387,12 @@ export function Hero() {
               Every frame signed on the Core, encrypted in transit, and verifiable
               end to end. Your vehicle data never travels unauthenticated.
             </p>
-            <button className="inline-flex h-9 items-center rounded-full bg-white px-4.5 text-xs font-medium uppercase tracking-[0.04em] text-[#0c0a09]">
+            <Link
+              href="/security"
+              className="inline-flex h-9 items-center rounded-full bg-white px-4.5 text-xs font-medium uppercase tracking-[0.04em] text-[#0c0a09]"
+            >
               Security at Canary
-            </button>
+            </Link>
           </div>
           <div>
             <div className="mb-2.5 text-[15.1px] font-medium">
@@ -436,9 +421,12 @@ export function Hero() {
           </h2>
           <div className="mt-9 flex flex-wrap items-center gap-5">
             <WaitlistModalButton />
-            <span className="text-[13.5px] font-medium text-[#fafafa]/60">
-              Watch the 2-min tour
-            </span>
+            <Link
+              href="/product"
+              className="text-[13.5px] font-medium text-[#fafafa]/60 hover:text-[#fafafa]/80 transition-colors"
+            >
+              See how Canary Core works →
+            </Link>
           </div>
         </div>
       </div>

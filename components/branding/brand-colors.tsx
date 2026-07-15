@@ -30,23 +30,21 @@ function ColorSwatch({ name, hex, rgb, className }: ColorSwatchProps) {
 }
 
 function DownloadCard() {
-  const handleDownload = () => {
-    // Simulated download - replace with actual download logic
-    toast.success("Starting download...", {
-      description: "Your Canary assets will begin downloading shortly.",
-    })
+  const handleRequest = () => {
+    toast.success("Copied hello@canary.engineering to clipboard")
+    navigator.clipboard.writeText("hello@canary.engineering")
   }
-
 
   return (
     <div className="rounded-3xl border border-foreground/8 bg-background p-8 shadow-[0_8px_24px_rgba(12,10,9,0.08)] h-full flex flex-col">
-      <h2 className="text-foreground text-2xl font-medium mb-4">download assets</h2>
+      <h2 className="text-foreground text-2xl font-medium mb-4">brand assets</h2>
       <p className="text-foreground/61 leading-relaxed mb-8 flex-grow">
-        Get all Canary brand assets, including logos, icons, and guidelines in a single ZIP file.
+        Need logos, icons, or the full guidelines as files? Email us and
+        we&apos;ll send over the asset pack.
       </p>
-      <Button onClick={handleDownload} className="w-full rounded-full bg-primary hover:bg-primary/90 text-primary-foreground">
+      <Button onClick={handleRequest} className="w-full rounded-full bg-primary hover:bg-primary/90 text-primary-foreground">
         <Download className="w-4 h-4 mr-2" />
-        Download ZIP
+        Email hello@canary.engineering
       </Button>
     </div>
   )
