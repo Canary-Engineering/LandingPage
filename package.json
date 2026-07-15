@@ -1,6 +1,7 @@
 {
   "name": "canary-web",
   "version": "0.1.0",
+  "description": "Canary marketing site",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
