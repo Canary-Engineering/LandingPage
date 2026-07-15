@@ -1,4 +1,210 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { WaitlistModalButton } from "@/components/ui/waitlistmodal";
+
+function useCountUp(target: number, durationMs = 1600) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    let start = 0;
+    function tick(ts: number) {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / durationMs, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.floor(eased * target));
+      if (progress < 1) raf = requestAnimationFrame(tick);
+    }
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, durationMs]);
+  return value;
+}
+
+function LivePulse({ className = "" }: { className?: string }) {
+  return (
+    <span className={`relative flex h-1.5 w-1.5 ${className}`}>
+      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+    </span>
+  );
+}
+
+const CHART_POINTS = [18, 32, 24, 44, 30, 52, 38, 60, 46, 68, 52, 72, 58, 78];
+
+function TelemetryChart() {
+  const w = 280;
+  const h = 84;
+  const step = w / (CHART_POINTS.length - 1);
+  const coords = CHART_POINTS.map((p, i) => [i * step, h - (p / 84) * h] as const);
+  const linePath = coords.map(([x, y], i) => `${i === 0 ? "M" : "L"}${x.toFixed(1)},${y.toFixed(1)}`).join(" ");
+  const areaPath = `${linePath} L${w},${h} L0,${h} Z`;
+  const pathRef = useRef<SVGPathElement>(null);
+  const [length, setLength] = useState(1000);
+  useEffect(() => {
+    if (pathRef.current) setLength(pathRef.current.getTotalLength());
+  }, []);
+  return (
+    <svg viewBox={`0 0 ${w} ${h}`} className="h-[84px] w-full overflow-visible">
+      <defs>
+        <linearGradient id="telemetry-fill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="var(--canary-pink)" stopOpacity="0.18" />
+          <stop offset="100%" stopColor="var(--canary-pink)" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path d={areaPath} fill="url(#telemetry-fill)" />
+      <path
+        ref={pathRef}
+        d={linePath}
+        fill="none"
+        stroke="var(--canary-pink)"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{
+          strokeDasharray: length,
+          strokeDashoffset: 0,
+          animation: "canary-draw-line 1.6s cubic-bezier(0.16,1,0.3,1) both",
+          ["--line-length" as string]: length,
+        }}
+      />
+      <circle cx={coords[coords.length - 1][0]} cy={coords[coords.length - 1][1]} r="3" fill="var(--canary-pink)" />
+    </svg>
+  );
+}
+
+function GaugeRing({ value, label }: { value: number; label: string }) {
+  return (
+    <div className="flex items-center gap-3">
+      <div
+        className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full"
+        style={{
+          background: `conic-gradient(var(--canary-pink) ${value * 3.6}deg, rgba(12,10,9,0.08) 0deg)`,
+        }}
+      >
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-background text-[10px] font-semibold text-foreground">
+          {value}%
+        </div>
+      </div>
+      <div>
+        <div className="text-[10.5px] font-semibold uppercase tracking-[0.04em] text-foreground/45">
+          {label}
+        </div>
+        <div className="text-[13px] font-medium text-foreground">Nominal</div>
+      </div>
+    </div>
+  );
+}
+
+function MiniMap() {
+  return (
+    <div
+      className="canary-grid-bg relative h-[84px] w-full overflow-hidden rounded-xl border border-foreground/8 bg-background-alt"
+      style={{ backgroundSize: "16px 16px" }}
+    >
+      <div className="absolute left-[58%] top-[42%] -translate-x-1/2 -translate-y-1/2">
+        <span className="relative flex h-3 w-3">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-50" />
+          <span className="relative inline-flex h-3 w-3 rounded-full border-2 border-background bg-primary" />
+        </span>
+      </div>
+      <div className="absolute bottom-1.5 left-2 font-mono text-[9.5px] text-foreground/45">
+        39.0438°N 77.4874°W
+      </div>
+    </div>
+  );
+}
+
+const eventFeed = [
+  { color: "bg-primary", label: "HARSH_BRAKE", meta: "-0.82g · 2s ago" },
+  { color: "bg-amber-500", label: "OVERSPEED", meta: "84 MPH · 41s ago" },
+  { color: "bg-foreground/25", label: "TRIP_START", meta: "09:12:04" },
+];
+
+function DashboardMock() {
+  const [activeRow, setActiveRow] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setActiveRow((r) => (r + 1) % eventFeed.length), 2200);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <div className="overflow-hidden rounded-3xl border border-foreground/8 bg-background-alt shadow-[0_20px_60px_rgba(12,10,9,0.12)]">
+      {/* window chrome */}
+      <div className="flex items-center gap-2 border-b border-foreground/8 bg-background px-5 py-3.5">
+        <span className="h-2.5 w-2.5 rounded-full bg-foreground/12" />
+        <span className="h-2.5 w-2.5 rounded-full bg-foreground/12" />
+        <span className="h-2.5 w-2.5 rounded-full bg-foreground/12" />
+        <span className="ml-3 font-mono text-[11.5px] text-foreground/40">
+          fleet.canary.engineering/dashboard
+        </span>
+        <span className="ml-auto flex items-center gap-1.5">
+          <LivePulse />
+          <span className="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-emerald-600">
+            Live
+          </span>
+        </span>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 p-5 md:grid-cols-[1.3fr_1fr] md:p-6">
+        {/* left column */}
+        <div className="flex flex-col gap-4">
+          <div className="rounded-2xl border border-foreground/8 bg-background p-4">
+            <div className="mb-2 flex items-center justify-between">
+              <span className="text-[10.5px] font-semibold uppercase tracking-[0.04em] text-foreground/45">
+                Live CAN Telemetry
+              </span>
+              <span className="font-mono text-[10.5px] text-foreground/45">RPM 3120</span>
+            </div>
+            <TelemetryChart />
+          </div>
+          <div className="rounded-2xl border border-foreground/8 bg-background p-4">
+            <div className="mb-3 text-[10.5px] font-semibold uppercase tracking-[0.04em] text-foreground/45">
+              Recent Events
+            </div>
+            <div className="flex flex-col gap-2.5">
+              {eventFeed.map((e, i) => (
+                <div
+                  key={e.label}
+                  className={`flex items-center justify-between rounded-lg px-2 py-1.5 transition-colors ${
+                    activeRow === i ? "bg-background-alt" : ""
+                  }`}
+                >
+                  <span className="flex items-center gap-2">
+                    <span className={`h-1.5 w-1.5 rounded-full ${e.color}`} />
+                    <span className="font-mono text-[11.5px] text-foreground">{e.label}</span>
+                  </span>
+                  <span className="font-mono text-[11px] text-foreground/40">{e.meta}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* right column */}
+        <div className="flex flex-col gap-4">
+          <div className="rounded-2xl border border-foreground/8 bg-background p-4">
+            <GaugeRing value={98} label="Fleet Health" />
+          </div>
+          <div className="rounded-2xl border border-foreground/8 bg-background p-4">
+            <div className="text-[10.5px] font-semibold uppercase tracking-[0.04em] text-foreground/45">
+              Active Vehicles
+            </div>
+            <div className="mt-1 flex items-baseline gap-2">
+              <span className="font-mono text-[22px] text-foreground">1,204</span>
+              <span className="text-[11px] font-medium text-emerald-600">↑ 3.1%</span>
+            </div>
+          </div>
+          <div className="rounded-2xl border border-foreground/8 bg-background p-4">
+            <div className="mb-2 text-[10.5px] font-semibold uppercase tracking-[0.04em] text-foreground/45">
+              Live GPS
+            </div>
+            <MiniMap />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const features = [
   {
@@ -49,69 +255,89 @@ const standards = [
 ];
 
 export function Hero() {
+  const miles = useCountUp(4182660);
   return (
     <div className="bg-background">
       {/* ── Hero ── */}
-      <div className="mx-auto max-w-[1280px] px-6 pt-[150px] md:px-9 lg:px-[72px]">
-        <div className="mb-5 flex items-center gap-2">
-          <span className="text-[12.5px] font-medium text-foreground/55">
-            Vehicle-miles monitored by Canary:
-          </span>
-          <span className="font-mono text-[13px] text-foreground">4,182,660</span>
-        </div>
-        <h1 className="m-0 text-[44.4px] font-medium leading-[50.6px] tracking-[-0.02em] text-foreground">
-          monitor your vehicle
-          <br />
-          in real-time.
-        </h1>
-        <p className="mt-5 max-w-[600px] text-[17px] leading-[27px] text-foreground/61">
-          Built for fleets, rentals and owners who need to know. Canary Core reads
-          the CAN bus and catches abuse the instant it happens — not minutes later.
-        </p>
-        <div className="mt-8 flex flex-wrap items-center gap-4">
-          <div className="flex h-10 items-center gap-1 rounded-full border border-foreground/14 bg-background py-0.5 pl-4 pr-0.5">
-            <input
-              placeholder="what's your work email?"
-              className="w-[190px] border-none bg-transparent font-sans text-sm text-foreground outline-none placeholder:text-foreground/40"
-            />
-            <WaitlistModalButton />
-          </div>
-          <button className="flex h-9 items-center gap-2.5 rounded-full border-none bg-transparent py-1 pl-1 pr-3.5">
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-foreground/6 text-[10px] text-foreground">
-              ▶
-            </span>
-            <span className="text-[13.5px] font-medium text-foreground/55">
-              Watch the 2-min tour
-            </span>
-          </button>
-        </div>
-
-        {/* Dashboard shot */}
-        <div className="mt-14 overflow-hidden rounded-3xl border border-foreground/8 bg-background-alt shadow-[0_20px_60px_rgba(12,10,9,0.12)]">
+      <div className="relative overflow-hidden">
+        <div
+          className="canary-grid-bg pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent)]"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full opacity-[0.16] blur-[110px]"
+          style={{ background: "var(--canary-pink)" }}
+          aria-hidden
+        />
+        <div className="relative mx-auto max-w-[1280px] px-6 pt-[150px] md:px-9 lg:px-[72px]">
           <div
-            className="flex aspect-[1424/640] items-center justify-center"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(45deg, rgba(12,10,9,0.03) 0 12px, transparent 12px 24px)",
-            }}
+            className="canary-fade-up mb-5 flex items-center gap-2"
+            style={{ animationDelay: "0ms" }}
           >
-            <span className="font-mono text-[13px] text-foreground/64">
-              fleet telemetry dashboard — drop screenshot here
+            <LivePulse />
+            <span className="text-[12.5px] font-medium text-foreground/55">
+              Vehicle-miles monitored by Canary:
+            </span>
+            <span className="font-mono text-[13px] text-foreground">
+              {miles.toLocaleString()}
             </span>
           </div>
-        </div>
+          <h1
+            className="canary-fade-up m-0 text-[44.4px] font-medium leading-[50.6px] tracking-[-0.02em] text-foreground"
+            style={{ animationDelay: "80ms" }}
+          >
+            monitor your vehicle
+            <br />
+            in real-time.
+          </h1>
+          <p
+            className="canary-fade-up mt-5 max-w-[600px] text-[17px] leading-[27px] text-foreground/61"
+            style={{ animationDelay: "160ms" }}
+          >
+            Built for fleets, rentals and owners who need to know. Canary Core reads
+            the CAN bus and catches abuse the instant it happens — not minutes later.
+          </p>
+          <div
+            className="canary-fade-up mt-8 flex flex-wrap items-center gap-4"
+            style={{ animationDelay: "240ms" }}
+          >
+            <div className="flex h-10 items-center gap-1 rounded-full border border-foreground/14 bg-background py-0.5 pl-4 pr-0.5 transition-shadow focus-within:ring-2 focus-within:ring-primary/30">
+              <input
+                placeholder="what's your work email?"
+                className="w-[190px] border-none bg-transparent font-sans text-sm text-foreground outline-none placeholder:text-foreground/40"
+              />
+              <WaitlistModalButton />
+            </div>
+            <button className="group flex h-9 items-center gap-2.5 rounded-full border-none bg-transparent py-1 pl-1 pr-3.5">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-foreground/6 text-[10px] text-foreground transition-transform group-hover:scale-110">
+                ▶
+              </span>
+              <span className="text-[13.5px] font-medium text-foreground/55 group-hover:text-foreground/80">
+                Watch the 2-min tour
+              </span>
+            </button>
+          </div>
 
-        {/* Readout strip */}
-        <div className="flex flex-wrap gap-12 border-b border-foreground/8 py-7">
-          <span className="font-mono text-[13px] text-foreground/64">
-            CAN FRAMES / DAY · 86,400,000
-          </span>
-          <span className="font-mono text-[13px] text-foreground/64">
-            ABUSE EVENTS DETECTED · 12,408
-          </span>
-          <span className="font-mono text-[13px] text-foreground/64">
-            MEDIAN ALERT LATENCY · 1.4s
-          </span>
+          {/* Dashboard mock */}
+          <div
+            className="canary-fade-up mt-14"
+            style={{ animationDelay: "340ms" }}
+          >
+            <DashboardMock />
+          </div>
+
+          {/* Readout strip */}
+          <div className="flex flex-wrap gap-12 border-b border-foreground/8 py-7">
+            <span className="font-mono text-[13px] text-foreground/64">
+              CAN FRAMES / DAY · 86,400,000
+            </span>
+            <span className="font-mono text-[13px] text-foreground/64">
+              ABUSE EVENTS DETECTED · 12,408
+            </span>
+            <span className="font-mono text-[13px] text-foreground/64">
+              MEDIAN ALERT LATENCY · 1.4s
+            </span>
+          </div>
         </div>
       </div>
 

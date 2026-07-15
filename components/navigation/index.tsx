@@ -79,27 +79,27 @@ const support: { title: string; href: string; description: string }[] = [
 ];
 
 const navTriggerClass =
-  "!h-auto !bg-transparent !px-0 text-xs font-semibold uppercase tracking-[0.04em] text-foreground/64 hover:!bg-transparent hover:text-primary data-[state=open]:!bg-transparent data-[state=open]:text-primary";
+  "!h-auto !bg-transparent !px-0 text-[15px] font-medium text-foreground/70 hover:!bg-transparent hover:text-primary data-[state=open]:!bg-transparent data-[state=open]:text-primary";
 
 function NavigationFrame() {
   return (
-    <div className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/88 backdrop-blur-sm">
-      <nav className="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-3.5 md:px-9 lg:px-[72px]">
-        <div className="flex items-center gap-8">
-          <Link href="/" className="inline-flex items-center gap-1.5">
-            <Canary className="h-6 w-auto fill-primary" />
-            <span
-              className="text-xl text-primary"
-              style={{ fontFamily: "var(--font-wordmark)", fontWeight: "var(--font-wordmark-weight)" }}
-            >
-              canary
-            </span>
-          </Link>
-          <div className="hidden lg:grid lg:justify-items-start">
+    <div className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
+      <nav className="relative mx-auto flex w-full max-w-[1400px] items-center justify-between gap-4 px-6 py-5 md:px-8 lg:px-10">
+        <Link href="/" className="inline-flex items-center gap-1.5">
+          <Canary className="h-6 w-auto fill-primary" />
+          <span
+            className="text-xl text-primary"
+            style={{ fontFamily: "var(--font-wordmark)", fontWeight: "var(--font-wordmark-weight)" }}
+          >
+            canary
+          </span>
+        </Link>
+
+        <div className="absolute left-1/2 hidden -translate-x-1/2 lg:flex">
                 <NavigationMenu>
-                  <NavigationMenuList className="gap-7">
+                  <NavigationMenuList className="gap-9">
                     <NavigationMenuItem>
-                      <NavigationMenuTrigger className={navTriggerClass}>PRODUCTS</NavigationMenuTrigger>
+                      <NavigationMenuTrigger className={navTriggerClass}>Products</NavigationMenuTrigger>
                       <NavigationMenuContent>
                         <ul className="grid grid-cols-4 gap-3 p-6 md:w-[900px] lg:w-[800px]">
                           <li className="col-span-2 row-span-3">
@@ -149,7 +149,7 @@ function NavigationFrame() {
                       </NavigationMenuContent>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                      <NavigationMenuTrigger className={navTriggerClass}>COMPANY</NavigationMenuTrigger>
+                      <NavigationMenuTrigger className={navTriggerClass}>Company</NavigationMenuTrigger>
                       <NavigationMenuContent>
                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                           {company.map((company) => (
@@ -169,19 +169,18 @@ function NavigationFrame() {
                         <NavigationMenuLink
                           className={navTriggerClass}
                         >
-                          CONTACT US
+                          Contact us
                         </NavigationMenuLink>
                       </Link>
                     </NavigationMenuItem>
                   </NavigationMenuList>
                 </NavigationMenu>
-          </div>
         </div>
-            <div className="lg:hidden flex justify-end space-x-2 pt-1">
+            <div className="lg:hidden flex justify-end space-x-2">
               <Sheet>
                 <SheetTrigger
                   asChild
-                  className="border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2"
+                  className="border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2"
                 >
                   <FontAwesomeIcon icon={faBars} className="py-3" />
                 </SheetTrigger>
@@ -300,12 +299,12 @@ function NavigationFrame() {
                 </SheetContent>
               </Sheet>
             </div>
-            <div className="hidden lg:flex justify-end space-x-2 pt-1">
+            <div className="hidden lg:flex justify-end items-center gap-6">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="font-bold hidden">
-                    Sign In
-                  </Button>
+                  <button className="text-[15px] font-medium text-foreground/70 hover:text-primary transition-colors">
+                    Log in
+                  </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
                   <DropdownMenuLabel>Sign In</DropdownMenuLabel>

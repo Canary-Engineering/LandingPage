@@ -49,7 +49,7 @@ export function WaitlistModalButton() {
   return (
     <Credenza>
       <CredenzaTrigger asChild>
-        <Button className="h-[34px] rounded-full bg-primary px-4 text-xs font-medium uppercase tracking-[0.04em] text-primary-foreground hover:bg-primary/90">
+        <Button className="h-10 rounded-lg bg-primary px-5 text-[15px] font-medium uppercase tracking-[0.04em] text-primary-foreground hover:bg-primary/90">
           Get early access
         </Button>
       </CredenzaTrigger>

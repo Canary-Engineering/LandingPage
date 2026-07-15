@@ -131,7 +131,7 @@ export default function Footer() {
           warp.co-style brand signature at the very bottom of the footer.
           Filled with a horizontal line-hatch that fades out toward the base
           of the letters instead of a solid color fill. */}
-      <div className="relative h-44 overflow-hidden sm:h-64 md:h-80 lg:h-[26rem]">
+      <div className="relative h-56 overflow-hidden sm:h-80 md:h-96 lg:h-[32rem]">
         <Link
           href="/"
           aria-label="Canary"
@@ -140,8 +140,9 @@ export default function Footer() {
           style={{
             fontFamily: "var(--font-wordmark)",
             fontWeight: "var(--font-wordmark-weight)",
-            fontSize: "clamp(6rem, 30vw, 26rem)",
+            fontSize: "clamp(7rem, 36vw, 32rem)",
             letterSpacing: "-0.02em",
+            transform: "translateX(-0.01em)",
             backgroundImage:
               "repeating-linear-gradient(to bottom, var(--canary-pink) 0px, var(--canary-pink) 2px, transparent 2px, transparent 6px)",
             WebkitBackgroundClip: "text",
