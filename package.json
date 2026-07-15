@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Canary marketing site",
   "private": true,
+  "author": "Canary Engineering",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
