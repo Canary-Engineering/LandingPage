@@ -46,7 +46,7 @@ const companyItems: NavLink[] = [
 ];
 
 const flatItems: { title: string; href: string }[] = [
-  { title: "Pricing", href: "#" },
+  { title: "Pricing", href: "/pricing" },
   { title: "Contact us", href: "/contact" },
 ];
 

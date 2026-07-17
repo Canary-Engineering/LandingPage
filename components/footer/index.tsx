@@ -14,7 +14,7 @@ const groups: LinkGroup[] = [
       { title: "CAN Harness", href: "#" },
       { title: "Starter Immobilizer", href: "#" },
       { title: "Canary Fleet", href: "/fleet" },
-      { title: "Pricing", href: "#" },
+      { title: "Pricing", href: "/pricing" },
     ],
   },
   {
