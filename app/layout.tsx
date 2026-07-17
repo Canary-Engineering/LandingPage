@@ -6,6 +6,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import NavigationFrame from "@/components/navigation";
 import Footer from "@/components/footer";
+import { TopBanner } from "@/components/top-banner";
 
 export const metadata: Metadata = {
   title: "Canary — Vehicle telematics & abuse detection",
@@ -18,7 +19,7 @@ export default function RootLayout({
 }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="relative min-h-screen bg-background-alt flex flex-col">
+      <body className="relative flex min-h-screen flex-col bg-background">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -26,6 +27,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ReactLenis root>
+            <TopBanner />
             <NavigationFrame />
             <main className="flex-grow">{children}</main>
             <Footer />

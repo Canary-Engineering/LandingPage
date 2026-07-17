@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Checkbox } from "@/components/ui/checkbox";
+import { cn } from "@/lib/utils";
 import {
   Form,
   FormControl,
@@ -34,7 +35,16 @@ const formSchema = z.object({
   mobile: z.boolean().default(false),
 });
 
-export function WaitlistModalButton() {
+const defaultTriggerClass =
+  "h-10 rounded-lg bg-primary px-5 text-[14px] font-medium text-primary-foreground hover:bg-primary/90";
+
+export function WaitlistModalButton({
+  className,
+  label = "Get early access",
+}: {
+  className?: string;
+  label?: string;
+}) {
   // Define form using `useForm`
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -49,9 +59,7 @@ export function WaitlistModalButton() {
   return (
     <Credenza>
       <CredenzaTrigger asChild>
-        <Button className="h-10 rounded-lg bg-primary px-5 text-[15px] font-medium uppercase tracking-[0.04em] text-primary-foreground hover:bg-primary/90">
-          Get early access
-        </Button>
+        <Button className={cn(defaultTriggerClass, className)}>{label}</Button>
       </CredenzaTrigger>
       <CredenzaContent>
         <CredenzaHeader>

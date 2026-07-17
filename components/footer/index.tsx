@@ -1,160 +1,122 @@
-import { RadioToggle } from "@/components/dark-mode/toggle";
-import { Canary } from "@/components/ui/icons";
-import { Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
+
+import { Canary } from "@/components/ui/icons";
+
+type LinkGroup = { heading: string; items: { title: string; href: string }[] };
+
+/* Two rows of four, matching warp.co's footer: the grid flows in order, so
+   groups 1-4 land on the top row and 5-8 on the bottom. */
+const groups: LinkGroup[] = [
+  {
+    heading: "Products",
+    items: [
+      { title: "Canary Core", href: "/drivesense" },
+      { title: "CAN Harness", href: "#" },
+      { title: "Starter Immobilizer", href: "#" },
+      { title: "Canary Fleet", href: "/fleet" },
+      { title: "Pricing", href: "#" },
+    ],
+  },
+  {
+    heading: "Solutions",
+    items: [
+      { title: "For Fleets", href: "#" },
+      { title: "For Rentals", href: "#" },
+      { title: "For Owners", href: "#" },
+      { title: "For Businesses", href: "#" },
+    ],
+  },
+  {
+    heading: "Resources",
+    items: [
+      { title: "API & Docs", href: "#" },
+      { title: "Roadmap", href: "/roadmap" },
+      { title: "Security", href: "#" },
+      { title: "Support", href: "/contact" },
+      { title: "Status", href: "#" },
+    ],
+  },
+  {
+    heading: "Company",
+    items: [
+      { title: "About", href: "/about" },
+      { title: "Branding", href: "/branding" },
+      { title: "Careers", href: "#" },
+      { title: "Contact us", href: "/contact" },
+    ],
+  },
+  {
+    heading: "Compare",
+    items: [
+      { title: "vs. GPS trackers", href: "#" },
+      { title: "vs. OBD dongles", href: "#" },
+      { title: "vs. OEM telematics", href: "#" },
+      { title: "vs. Dashcams", href: "#" },
+    ],
+  },
+  {
+    heading: "Legal",
+    items: [
+      { title: "Terms of Service", href: "/terms" },
+      { title: "Privacy Policy", href: "/privacy" },
+      { title: "Acceptable Use", href: "#" },
+    ],
+  },
+  {
+    heading: "Social",
+    items: [
+      { title: "LinkedIn", href: "#" },
+      { title: "Instagram", href: "#" },
+      { title: "GitHub", href: "#" },
+    ],
+  },
+];
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-foreground/8 bg-background">
-      <div className="mx-auto w-full max-w-[1280px] px-6 pb-10 pt-16 md:px-9 lg:px-[72px]">
-        <div className="grid grid-cols-1 gap-12 pb-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
-          {/* Logo Section */}
-          <div className="space-y-4">
-            <Link href="/" className="inline-flex items-center gap-1.5">
-              <Canary className="h-6 w-auto fill-primary" />
-              <span
-                className="text-xl text-primary"
-                style={{ fontFamily: "var(--font-wordmark)", fontWeight: "var(--font-wordmark-weight)" }}
-              >
-                canary
-              </span>
-            </Link>
-            <p className="max-w-[220px] text-sm leading-[1.8] text-foreground/64">
-              Vehicle telematics and abuse detection, engineered for fleets and
-              owners who need to know.
-            </p>
-            <div className="pt-2">
-              <RadioToggle />
-            </div>
-          </div>
-
-          {/* Navigation Links */}
-          <div>
-            <h3 className="mb-4 text-[13.2px] font-medium text-foreground">Canary</h3>
-            <ul className="flex flex-col gap-3 text-[13.2px] text-foreground/45">
-              <li>
-                <Link href="/drivesense" className="hover:text-primary transition-colors">
-                  Canary Core
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  Core &amp; Nodes
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  Pricing
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-[13.2px] font-medium text-foreground">Services</h3>
-            <ul className="flex flex-col gap-3 text-[13.2px] text-foreground/45">
-              <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  Fleets &amp; Rentals
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  Individual Owners
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition-colors">
-                  API &amp; Docs
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-[13.2px] font-medium text-foreground">Company</h3>
-            <ul className="flex flex-col gap-3 text-[13.2px] text-foreground/45">
-              <li>
-                <Link href="/about" className="hover:text-primary transition-colors">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/roadmap" className="hover:text-primary transition-colors">
-                  Roadmap
-                </Link>
-              </li>
-              <li>
-                <Link href="/branding" className="hover:text-primary transition-colors">
-                  Branding
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-[13.2px] font-medium text-foreground">Legal</h3>
-            <ul className="flex flex-col gap-3 text-[13.2px] text-foreground/45">
-              <li>
-                <Link href="/terms" className="hover:text-primary transition-colors">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="hover:text-primary transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-            </ul>
-            <div className="mt-6 flex gap-4 text-foreground/45">
-              <Link href="#" className="hover:text-primary transition-colors">
-                <Instagram className="h-4 w-4" />
-              </Link>
-              <Link href="#" className="hover:text-primary transition-colors">
-                <Linkedin className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
+    <footer className="border-t border-border">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-6 md:gap-8">
+        {/* Brand column: mark pinned top, copyright pinned bottom. */}
+        <div className="flex flex-col justify-between gap-10 md:col-span-2">
+          <Link href="/" aria-label="Canary" className="inline-flex">
+            <Canary className="h-20 w-auto fill-primary" />
+          </Link>
+          <span className="text-[13px] text-muted-foreground">
+            Copyright © Halvex Inc 2025, All rights reserved
+          </span>
         </div>
 
-        <div className="flex flex-col-reverse items-start justify-between gap-3 border-t border-foreground/8 pt-6 sm:flex-row sm:items-center">
-          <span className="font-mono text-xs text-foreground/40">
-            © 2025 HALVEX INC. ALL RIGHTS RESERVED.
-          </span>
-          <span className="text-xs text-foreground/40">
-            Engineered by Canary in Ashburn, est. 2025
-          </span>
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:col-span-4 md:grid-cols-4">
+          {groups.map((g) => (
+            <div key={g.heading}>
+              <div className="mb-5 text-[15px] font-medium text-foreground">{g.heading}</div>
+              <ul className="space-y-4">
+                {g.items.map((i) => (
+                  <li key={i.title}>
+                    <Link
+                      href={i.href}
+                      className="text-[15px] text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      {i.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Huge wordmark, oversized so it overflows the viewport and cropped —
-          warp.co-style brand signature at the very bottom of the footer.
-          Filled with a horizontal line-hatch that fades out toward the base
-          of the letters instead of a solid color fill. */}
-      <div className="relative h-56 overflow-hidden sm:h-80 md:h-96 lg:h-[32rem]">
+      {/* Brand signature: the wordmark oversized until it overflows the viewport and
+          crops, line-hatched and fading out toward the base of the letters. Drawn
+          from vector outlines rather than live text — see `.canary-signature`. */}
+      <div className="canary-signature-wrap relative overflow-hidden">
         <Link
           href="/"
           aria-label="Canary"
           tabIndex={-1}
-          className="absolute inset-x-0 top-0 block select-none whitespace-nowrap text-center leading-none transition-opacity hover:opacity-80"
-          style={{
-            fontFamily: "var(--font-wordmark)",
-            fontWeight: "var(--font-wordmark-weight)",
-            fontSize: "clamp(7rem, 36vw, 32rem)",
-            letterSpacing: "-0.02em",
-            transform: "translateX(-0.01em)",
-            backgroundImage:
-              "repeating-linear-gradient(to bottom, var(--canary-pink) 0px, var(--canary-pink) 2px, transparent 2px, transparent 6px)",
-            WebkitBackgroundClip: "text",
-            backgroundClip: "text",
-            color: "transparent",
-            WebkitTextFillColor: "transparent",
-            WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 94%)",
-            maskImage: "linear-gradient(to bottom, black 0%, transparent 94%)",
-          }}
-        >
-          canary
-        </Link>
+          className="canary-signature absolute left-1/2 top-0 block -translate-x-1/2 transition-opacity hover:opacity-80"
+        />
       </div>
     </footer>
   );

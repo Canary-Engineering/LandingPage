@@ -120,7 +120,14 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background-alt text-foreground;
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Display headings run tight and medium-weight across the site — the italic
+     accent half of each headline drops back to 400 via `font-normal italic`. */
+  h1, h2, h3, h4 {
+    letter-spacing: -0.025em;
+    font-weight: 500;
   }
 }
 
@@ -162,4 +169,68 @@ body {
 @keyframes canary-draw-line {
   from { stroke-dashoffset: var(--line-length, 1000); }
   to { stroke-dashoffset: 0; }
+}
+
+/* Footer brand signature. The wordmark is real outlines — /canary-wordmark.svg,
+   generated from the Neue Haas Medium wordmark cut — used as a mask, with a
+   fixed-pitch line hatch showing through it. Both the wrapper and the mark size
+   off one vw-based width, so the mark's proportions are identical at every
+   viewport. (The old version scaled font-size fluidly against a container whose
+   height stepped at breakpoints, which is what made the 'y' drift on resize.)
+   The bottom fade lives in the SVG's own alpha gradient. */
+.canary-signature-wrap {
+  /* 102.5vw capped at 1458px reproduces the scale the old text version landed on
+     (clamp(7rem, 36vw, 32rem) x the wordmark's 2.848em advance), minus the drift. */
+  --wm-w: min(102.5vw, 1458px);
+  --wm-aspect: 4.0978;
+  --wm-h: calc(var(--wm-w) / var(--wm-aspect));
+  /* Show this fraction of the mark; overflow-hidden cuts the rest, so the letters
+     run off the bottom of the page. A multiplier of --wm-h (not a fixed height)
+     keeps the crop proportional at every viewport. */
+  --wm-crop: 0.82;
+  height: calc(var(--wm-h) * var(--wm-crop));
+}
+.canary-signature {
+  width: var(--wm-w);
+  height: var(--wm-h);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--canary-pink) 0px,
+    var(--canary-pink) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  -webkit-mask-image: url("/canary-wordmark.svg");
+  mask-image: url("/canary-wordmark.svg");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* Hero CAN-data field: a soft radial mask drifts across the glow layer, lighting
+   whichever characters fall inside it. Masking (rather than repainting spans)
+   keeps this on the compositor — no per-frame React work. */
+.canary-can-glow {
+  color: var(--canary-pink);
+  text-shadow: 0 0 6px rgba(255, 0, 73, 0.55);
+  -webkit-mask-image: radial-gradient(circle at center, black 0%, rgba(0,0,0,0.45) 42%, transparent 68%);
+  mask-image: radial-gradient(circle at center, black 0%, rgba(0,0,0,0.45) 42%, transparent 68%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 48% 64%;
+  mask-size: 48% 64%;
+  -webkit-mask-position: 4% 8%;
+  mask-position: 4% 8%;
+  animation: canary-glow-drift 24s ease-in-out infinite;
+}
+@keyframes canary-glow-drift {
+  0%   { -webkit-mask-position: 4% 8%;   mask-position: 4% 8%; }
+  25%  { -webkit-mask-position: 88% 24%; mask-position: 88% 24%; }
+  50%  { -webkit-mask-position: 64% 92%; mask-position: 64% 92%; }
+  75%  { -webkit-mask-position: 14% 66%; mask-position: 14% 66%; }
+  100% { -webkit-mask-position: 4% 8%;   mask-position: 4% 8%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .canary-can-glow { animation: none; }
 }
