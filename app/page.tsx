@@ -1,17 +1,13 @@
-import { Hero } from "@/components/home/hero";
-import { ProductGrid } from "@/components/home/product-grid";
-import { CTA, EdgeDetection, Extras, News, Pillars } from "@/components/home/sections";
+import { PreLaunchHero } from "@/components/prelaunch/hero";
+import { AbuseCards } from "@/components/prelaunch/abuse-cards";
+import { PreLaunchCTA } from "@/components/prelaunch/cta";
 
 export default function Home() {
   return (
     <>
-      <Hero />
-      <ProductGrid />
-      <Pillars />
-      <EdgeDetection />
-      <Extras />
-      <News />
-      <CTA />
+      <PreLaunchHero />
+      <AbuseCards />
+      <PreLaunchCTA />
     </>
   );
 }

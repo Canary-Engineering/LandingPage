@@ -4,54 +4,15 @@ import { Canary } from "@/components/ui/icons";
 
 type LinkGroup = { heading: string; items: { title: string; href: string }[] };
 
-/* Two rows of four, matching warp.co's footer: the grid flows in order, so
-   groups 1-4 land on the top row and 5-8 on the bottom. */
+/* Pre-launch footer: only the columns that point at real, built pages. */
 const groups: LinkGroup[] = [
-  {
-    heading: "Products",
-    items: [
-      { title: "Canary Core", href: "/drivesense" },
-      { title: "CAN Harness", href: "#" },
-      { title: "Starter Immobilizer", href: "#" },
-      { title: "Canary Fleet", href: "/fleet" },
-      { title: "Pricing", href: "/pricing" },
-    ],
-  },
-  {
-    heading: "Solutions",
-    items: [
-      { title: "For Fleets", href: "#" },
-      { title: "For Rentals", href: "#" },
-      { title: "For Owners", href: "#" },
-      { title: "For Businesses", href: "#" },
-    ],
-  },
-  {
-    heading: "Resources",
-    items: [
-      { title: "API & Docs", href: "#" },
-      { title: "Roadmap", href: "/roadmap" },
-      { title: "Security", href: "#" },
-      { title: "Support", href: "/contact" },
-      { title: "Status", href: "#" },
-    ],
-  },
   {
     heading: "Company",
     items: [
       { title: "About", href: "/about" },
+      { title: "Pricing", href: "/pricing" },
       { title: "Branding", href: "/branding" },
-      { title: "Careers", href: "#" },
       { title: "Contact us", href: "/contact" },
-    ],
-  },
-  {
-    heading: "Compare",
-    items: [
-      { title: "vs. GPS trackers", href: "#" },
-      { title: "vs. OBD dongles", href: "#" },
-      { title: "vs. OEM telematics", href: "#" },
-      { title: "vs. Dashcams", href: "#" },
     ],
   },
   {
@@ -59,15 +20,6 @@ const groups: LinkGroup[] = [
     items: [
       { title: "Terms of Service", href: "/terms" },
       { title: "Privacy Policy", href: "/privacy" },
-      { title: "Acceptable Use", href: "#" },
-    ],
-  },
-  {
-    heading: "Social",
-    items: [
-      { title: "LinkedIn", href: "#" },
-      { title: "Instagram", href: "#" },
-      { title: "GitHub", href: "#" },
     ],
   },
 ];
@@ -86,7 +38,7 @@ export default function Footer() {
           </span>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:col-span-4 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:col-span-4 md:grid-cols-2">
           {groups.map((g) => (
             <div key={g.heading}>
               <div className="mb-5 text-[15px] font-medium text-foreground">{g.heading}</div>
