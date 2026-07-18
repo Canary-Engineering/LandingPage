@@ -23,8 +23,9 @@ type Abuse = {
    `poster` at its /abuse/<name>.jpg alongside the video. `preload="none"` means the
    missing videos aren't fetched until a card is actually clicked.
 
-   Held-back categories (add when we have footage): money shift / over-rev, cold-start
-   revving (no warm-up), harsh cornering / drift, geofence breach, excessive idling. */
+   Held-back categories (add when we have footage): overspeed, impact / curb strike,
+   tamper / power-loss, money shift / over-rev, cold-start revving (no warm-up),
+   harsh cornering / drift, geofence breach, excessive idling. */
 const TEMP_POSTER = "/gtr.png";
 
 const abuse: Abuse[] = [
@@ -38,15 +39,6 @@ const abuse: Abuse[] = [
     poster: TEMP_POSTER,
   },
   {
-    tag: "Harsh braking / accel",
-    title: "standing on the brakes",
-    body: "A hard deceleration spike the IMU catches and the CAN-bus speed drop confirms — cross-checked, not guessed.",
-    code: "HARSH_BRAKE",
-    stat: "-0.82g sustained",
-    video: "/abuse/harsh-brake.mp4",
-    poster: TEMP_POSTER,
-  },
-  {
     tag: "Redline launches",
     title: "launched off the line",
     body: "Full-throttle from a standstill against a redline RPM read straight off the bus. No launch-control excuse survives the data.",
@@ -56,30 +48,12 @@ const abuse: Abuse[] = [
     poster: TEMP_POSTER,
   },
   {
-    tag: "Overspeed",
-    title: "well over the limit",
-    body: "Speed from CAN-bus wheel data, not a jittery GPS estimate — accurate in tunnels and garages where trackers lose the plot.",
-    code: "OVERSPEED",
-    stat: "71 in a 40",
-    video: "/abuse/overspeed.mp4",
-    poster: TEMP_POSTER,
-  },
-  {
-    tag: "Impact / curb strike",
-    title: "hit something",
-    body: "A sharp g-force spike that reads as a collision or curb strike — flagged with a timestamp and last-known fix before the driver can explain it away.",
-    code: "IMPACT",
-    stat: "+3.1g spike",
-    video: "/abuse/impact.mp4",
-    poster: TEMP_POSTER,
-  },
-  {
-    tag: "Tamper / power-loss",
-    title: "pulled the harness",
-    body: "Cut the power or yank the connector and the Core reports it on backup — one alert with a reason code before it goes dark.",
-    code: "TAMPER",
-    stat: "harness pull · 0x02",
-    video: "/abuse/tamper.mp4",
+    tag: "Harsh braking / accel",
+    title: "standing on the brakes",
+    body: "A hard deceleration spike the IMU catches and the CAN-bus speed drop confirms — cross-checked, not guessed.",
+    code: "HARSH_BRAKE",
+    stat: "-0.82g sustained",
+    video: "/abuse/harsh-brake.mp4",
     poster: TEMP_POSTER,
   },
 ];
@@ -147,17 +121,17 @@ function AbuseVideoCard({ tag, title, body, code, stat, video, poster }: Abuse) 
 export function AbuseCards() {
   return (
     <section id="abuse" className="border-b border-border">
-      <div className="mx-auto max-w-7xl px-6 pt-24">
-        <h2 className="max-w-3xl text-5xl font-medium tracking-tight md:text-6xl">
+      <div className="mx-auto max-w-7xl px-6 pt-24 text-center">
+        <h2 className="mx-auto max-w-3xl text-5xl font-medium tracking-tight md:text-6xl">
           watch the abuse{" "}
           <span className="font-normal italic text-muted-foreground">as it happens.</span>
         </h2>
-        <p className="mt-6 max-w-xl text-[16px] text-muted-foreground">
-          Every category Canary detects on the bus — replay each clip to see exactly what
-          the Core flagged, and the signal that gave it away.
+        <p className="mx-auto mt-6 max-w-xl text-[16px] text-muted-foreground">
+          Replay each clip to see exactly what the Core flagged on the bus — and the
+          signal that gave it away.
         </p>
       </div>
-      <div className="mx-auto grid max-w-7xl gap-4 px-6 pb-24 pt-12 md:grid-cols-2">
+      <div className="mx-auto grid max-w-7xl gap-8 px-6 pb-24 pt-16 md:grid-cols-3">
         {abuse.map((a) => (
           <AbuseVideoCard key={a.code} {...a} />
         ))}
