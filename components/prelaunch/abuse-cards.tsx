@@ -12,22 +12,13 @@ type Abuse = {
   poster: string;
 };
 
-/* One card per abuse category. Real clips drop into /public/abuse/<name>.mp4 (with a
-   matching /public/abuse/<name>.jpg poster) later with no code change — the video paths
-   are already wired here. Card 1 points at the existing /hero.mp4 so the play/replay
-   interaction is verifiable in dev; swap it to /abuse/donuts.* once the real clip
-   exists.
-
-   Posters: until the real /abuse/*.jpg frames exist, every card uses /gtr.png as a
-   temporary shared poster so nothing 404s. When a real clip lands, point that card's
-   `poster` at its /abuse/<name>.jpg alongside the video. `preload="none"` means the
-   missing videos aren't fetched until a card is actually clicked.
+/* One card per abuse category. Clips live in /public/abuse/<name>.mp4, converted from
+   source GIFs (ffmpeg, libx264) with a matching /public/abuse/<name>.jpg poster pulled
+   from the first frame.
 
    Held-back categories (add when we have footage): overspeed, impact / curb strike,
    tamper / power-loss, money shift / over-rev, cold-start revving (no warm-up),
    harsh cornering / drift, geofence breach, excessive idling. */
-const TEMP_POSTER = "/gtr.png";
-
 const abuse: Abuse[] = [
   {
     tag: "Donuts / burnouts",
@@ -35,8 +26,8 @@ const abuse: Abuse[] = [
     body: "Sustained yaw with wheel-spin and no forward progress — the signature of someone treating a parking lot like a skidpad.",
     code: "DONUTS",
     stat: "yaw 47°/s · wheel-spin",
-    video: "/hero.mp4",
-    poster: TEMP_POSTER,
+    video: "/abuse/donuts.mp4",
+    poster: "/abuse/donuts.jpg",
   },
   {
     tag: "Redline launches",
@@ -45,7 +36,7 @@ const abuse: Abuse[] = [
     code: "REDLINE_LAUNCH",
     stat: "6800 RPM from stop",
     video: "/abuse/redline-launch.mp4",
-    poster: TEMP_POSTER,
+    poster: "/abuse/redline-launch.jpg",
   },
   {
     tag: "Harsh braking / accel",
@@ -54,7 +45,7 @@ const abuse: Abuse[] = [
     code: "HARSH_BRAKE",
     stat: "-0.82g sustained",
     video: "/abuse/harsh-brake.mp4",
-    poster: TEMP_POSTER,
+    poster: "/abuse/harsh-brake.jpg",
   },
 ];
 
